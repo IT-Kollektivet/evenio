@@ -1,1 +1,25 @@
 {% extends 'base.html' %}
+
+{% block content %}
+
+<form action="" method="post">
+    {% csrf_token %}
+
+    <p>{{ form.title.label_tag }} {{ form.title }}</p>
+    <p>{{ form.happens.label_tag }} {{ form.happens }}</p>
+    <p>{{ form.repeat.label_tag }} {{ form.repeat }}</p>
+    <p>{{ form.address.label_tag }} {{ form.address }}</p>
+    <p>{{ form.category.label_tag }} {{ form.category }}</p>
+    <p>{{ form.language.label_tag }} {{ form.language }}</p>
+    <p>{{ form.description.label_tag }} {{ form.description }}</p>
+
+    <p>{{ form.signup.label_tag }} {{ form.signup }}</p>
+    <p>{{ form.comments_before.label_tag }} {{ form.comments_before }}</p>
+    <p>{{ form.comments_after.label_tag }} {{ form.comments_after }}</p>
+    <p>{{ form.signup_anonymous.label_tag }} {{ form.signup_anonymous }}</p>
+    <p>{{ form.comments_anonymous_before.label_tag }} {{ form.comments_anonymous_before }}</p>
+    <p>{{ form.comments_anonymous_after.label_tag }} {{ form.comments_anonymous_after }}</p>
+    <button type="submit">DO IT!</button>
+</form>
+
+{% endblock %}

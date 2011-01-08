@@ -6,6 +6,8 @@ An calendar application
 from django.db import models
 from django.contrib.auth.models import User
 
+from django.forms import ModelForm
+
 REPEAT_CHOICES = (
         ('n','None'),
         ('d','Daily'),
@@ -18,20 +20,6 @@ LANG_CHOICES = (
         ('da','Dansk'),
         ('en','English'),
 )
-
-
-#TODO: There must be a better way of associating users and anonymous users
-#to an event? The problem is that if the user is anonymous she should fill 
-#out the name of the owner.
-
-#User vs. anonymous problem:
-#    Solution 1: Create a event without "owner" field and then two other models 
-#                that inherit this model.
-#    Solution 2: Have two fields "anonymous_owner" and "owner", and let the view
-#                decide the representation.
-#    Solution 3: Simply create a user when a anonymous creates an event.
-#                Argument: the anonymous user probably wants to have the option
-#                to adjust the event in case of errors or changes. 
 
 class Category(models.Model):
     """ A category """
@@ -57,7 +45,8 @@ class Event(models.Model):
     language = models.CharField(max_length=2, choices=LANG_CHOICES, default='da')
     description = models.TextField()
 
-    changed = models.DateTimeField()
+    created = models.DateTimeField(auto_now_add=True)
+    changed = models.DateTimeField(auto_now=True)
 
     owner = models.ForeignKey(User, null=True, blank=True)
     owner_anonymous = models.CharField(max_length=255, null=True, blank=True)
@@ -73,6 +62,10 @@ class Event(models.Model):
     def __unicode__(self):
         return self.title
 
+
+class EventForm(ModelForm):
+    class Meta:
+        model = Event
 
 class EventProviderProfile(models.Model):
     """ A verified users profile """
