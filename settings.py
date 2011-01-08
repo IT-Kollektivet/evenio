@@ -102,6 +102,7 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'evenio_cal',
 
+    'registration',
     'profiles',
 )
 

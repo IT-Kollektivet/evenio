@@ -32,6 +32,9 @@ class Category(models.Model):
         verbose_name = "Category"
         verbose_name_plural = "Categories"
 
+    def natural_key(self):
+        return (self.id, self.title)
+
 
 class Event(models.Model):
     """ A event """
