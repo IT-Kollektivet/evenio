@@ -1,1 +1,10 @@
 {% extends 'base.html' %}
+
+{% block content %}
+
+   {% for object in object_list %}
+      {% object.title %}
+   {% endfor %}
+   <br />
+
+{% endblock %}
