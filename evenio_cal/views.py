@@ -24,7 +24,7 @@ def list_events(request):
 
     events = Event.objects.all()
 
-    return object_list(request, events, template_name="templates/event_list.html")
+    return object_list(request, events)
 
 
 def create_event(request):
