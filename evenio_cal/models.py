@@ -36,7 +36,7 @@ LANG_CHOICES = (
 class Category(models.Model):
     """ A category """
     title = models.CharField(max_length=255)
-    
+
     def __unicode__(self):
         return self.title
 
@@ -53,8 +53,8 @@ class Event(models.Model):
 
     changed = models.DateTimeField()
 
-    owner = models.ForeignKey(User) # User from auth framework
-    owner_anonymous = models.CharField(max_length=255)
+    owner = models.ForeignKey(User, null=True, blank=True)
+    owner_anonymous = models.CharField(max_length=255, null=True, blank=True)
 
     # Allow:
     signup = models.BooleanField(default=True)
@@ -66,7 +66,6 @@ class Event(models.Model):
 
     def __unicode__(self):
         return self.title
-
 
 
 class EventProviderProfile(models.Model):
