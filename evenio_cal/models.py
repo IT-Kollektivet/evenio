@@ -44,7 +44,6 @@ class Event(models.Model):
     address = models.CharField(max_length=255)
     category = models.ManyToManyField(Category)
     language = models.CharField(max_length=2, choices=LANG_CHOICES, default='da')
-    short_description = models.CharField(max_length=140)
     description = models.TextField()
 
     created = models.DateTimeField(auto_now_add=True)
