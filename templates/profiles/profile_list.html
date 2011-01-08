@@ -3,7 +3,7 @@
 {% block content %}
 
     {% for profile in object_list %}
-        {{ profile.name }}
+        <a href="{% url profiles.views.profile_detail profile.user.username %}">{{ profile.name }}</a>
     {% endfor %}
 
 {% endblock %}
