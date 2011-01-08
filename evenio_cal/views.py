@@ -1,7 +1,7 @@
 """
 Views for evenio
 """
-from evenio.models import Event
+from evenio_cal.models import Event
 
 from django.views.generic.list_detail import object_list, object_detail
 from django.views.generic.create_update import create_object, update_object
