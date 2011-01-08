@@ -3,7 +3,8 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    (r'^evenio/', include('evenio_cal.urls')),
+    (r'^kalender/', include('evenio_cal.urls')),
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     (r'^admin/', include(admin.site.urls)),
+    (r'^profiles/', include('profiles.urls')),
 )

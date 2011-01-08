@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    {% for profile in object_list %}
+        {{ profile.name }}
+    {% endfor %}
+
+{% endblock %}
