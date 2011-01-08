@@ -1,5 +1,5 @@
 from django.contrib import admin
-from evenio_cal.models import Event
+from evenio_cal.models import Event, Category
 
 class EventAdmin(admin.ModelAdmin):
     pass
