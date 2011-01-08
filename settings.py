@@ -93,6 +93,8 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.admindocs',
     'evenio_cal',
+
+    'registration',
 )
 
 # Telling where to find userprofiles. 

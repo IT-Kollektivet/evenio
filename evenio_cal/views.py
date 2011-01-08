@@ -17,7 +17,8 @@ def show_event(request, event_id):
     events = Event.objects.all()
 
     if request.is_ajax():
-        json = serialize("json", events, use_natural_keys=True)
+        event = events.get(pk=event_id)
+        json = serialize("json", event, use_natural_keys=True)
         return HttpResponse(json)
     else:
         return object_detail(request, events, object_id=event_id)
@@ -29,7 +30,11 @@ def list_events(request):
 
     events = Event.objects.all()
 
-    return object_list(request, events)
+    if request.is_ajax():
+        json = serialize("json", events, use_natural_keys=True)
+        return HttpResponse(json)
+    else:
+        return object_detail(request, events, object_id=event_id)
 
 
 def create_event(request):
