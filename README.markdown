@@ -1,6 +1,6 @@
 # Evenio
 
-## The django event system
+## The django event system of awesomeness!
 
 ### TODO:
 
