@@ -33,6 +33,13 @@ LANG_CHOICES = (
 #                Argument: the anonymous user probably wants to have the option
 #                to adjust the event in case of errors or changes. 
 
+class Category(models.Model):
+    """ A category """
+    title = models.CharField(max_length=255)
+    
+    def __unicode__(self):
+        return self.title
+
 
 class Event(models.Model):
     """ A event """
@@ -58,13 +65,6 @@ class Event(models.Model):
     def __unicode__(self):
         return self.title
 
-
-class Category(models.Model):
-    """ A category """
-    title = models.CharField(max_length=255)
-    
-    def __unicode__(self):
-        return self.title
 
 
 class EventProviderProfile(models.Model):
