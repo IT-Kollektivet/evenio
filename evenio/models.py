@@ -7,6 +7,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 REPEAT_CHOICES = (
+        ('n','None'),
         ('d','Daily'),
         ('w','Weekly'),
         ('m','Monthly'),
@@ -37,33 +38,25 @@ class Event(models.Model):
     """ A event """
     title = models.CharField(max_length=255) 
     time = models.DateTimeField()
-    repeat = models.CharField(max_length=1, choices=REPEAT_CHOICES)
+    repeat = models.CharField(max_length=1, choices=REPEAT_CHOICES, default='n')
     address = models.CharField(max_length=255)
-    category = models.ForeignKey(Category)
-    language = models.CharField(max_length=2, choices=LANG_CHOICES)
+    category = models.ManyToManyField(Category)
+    language = models.CharField(max_length=2, choices=LANG_CHOICES, default='da')
     description = models.TextField()
+
+    owner = models.ForeignKey(User) # User from auth framework
+    owner_anonymous = models.CharField(max_length=255)
 
     # Allow:
     signup = models.BooleanField(default=True)
-    comments = models.BooleanField(default=True)
-    post_comments = models.BooleanField(default=True)
-    anonymous_signup = models.BooleanField(default=True)
-    anonymous_comments = models.BooleanField(default=True)
-    anonymous_post_comments = models.BooleanField(default=True)
+    comments_before = models.BooleanField(default=True)
+    comments_after = models.BooleanField(default=True)
+    signup_anonymous = models.BooleanField(default=True)
+    comments_anonymous_before = models.BooleanField(default=True)
+    comments_anonymous_after = models.BooleanField(default=True)
 
     def __unicode__(self):
         return self.title
-
-
-class AnonymousEvent(Event):
-    """ A anonymous event """
-
-    owner = models.CharField(max_length=255)
-    
-
-class NormalEvent(Event):
-    """ A normal event owned by an user """
-    owner = models.ForeignKey(User) # User from auth framework
 
 
 class Category(models.Model):
