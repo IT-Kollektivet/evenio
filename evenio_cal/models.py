@@ -44,12 +44,14 @@ class Category(models.Model):
 class Event(models.Model):
     """ A event """
     title = models.CharField(max_length=255) 
-    time = models.DateTimeField()
+    happens = models.DateTimeField()
     repeat = models.CharField(max_length=1, choices=REPEAT_CHOICES, default='n')
     address = models.CharField(max_length=255)
     category = models.ManyToManyField(Category)
     language = models.CharField(max_length=2, choices=LANG_CHOICES, default='da')
     description = models.TextField()
+
+    changed = models.DateTimeField()
 
     owner = models.ForeignKey(User) # User from auth framework
     owner_anonymous = models.CharField(max_length=255)
