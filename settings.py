@@ -1,4 +1,4 @@
-# Django settings for evenio_project project.
+# Django settings for evenio project.
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -75,7 +75,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'evenio_project.urls'
+ROOT_URLCONF = 'evenio.urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -89,14 +89,13 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
-    # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
-    'evenio',
+
+    'django.contrib.admin',
+    'django.contrib.admindocs',
+    'evenio_cal',
 )
 
 # Telling where to find userprofiles. 
 # Should be appname.modelname, NOT appname.models.modelname
-AUTH_PROFILE_MODULE = "evenio.EventProviderProfile"
+AUTH_PROFILE_MODULE = "evenio_cal.EventProviderProfile"
 

@@ -1,0 +1,3 @@
+Templates is used to build the foundation of pages in this application. See http://docs.djangoproject.com/en/1.2/topics/templates/ on how to use the templating language.
+
+You can also look into the files in this folder to see how templates are structured.
