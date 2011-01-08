@@ -12,6 +12,9 @@ urlpatterns = patterns('',
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     (r'^admin/', include(admin.site.urls)),
 
+    # Profiles
+    (r'^profiles/', include('profiles.urls')),
+
     # Registration
     url(r'^login/$',
         auth_views.login,

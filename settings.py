@@ -1,5 +1,12 @@
 # Django settings for evenio project.
 
+import os
+import django
+# calculated paths for django and the site
+# used as starting points for various other paths
+DJANGO_ROOT = os.path.dirname(os.path.realpath(django.__file__))
+SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -81,6 +88,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    os.path.join(SITE_ROOT, 'templates')
 )
 
 INSTALLED_APPS = (
@@ -95,9 +103,10 @@ INSTALLED_APPS = (
     'evenio_cal',
 
     'registration',
+    'profiles',
 )
 
 # Telling where to find userprofiles. 
 # Should be appname.modelname, NOT appname.models.modelname
-AUTH_PROFILE_MODULE = "evenio_cal.EventProviderProfile"
+AUTH_PROFILE_MODULE = "evenio_cal.UserProfile"
 
