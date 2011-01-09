@@ -1,1 +1,17 @@
-{% extends 'base.html' %}
+{% extends 'evenio_cal_base.html' %}
+
+{% block content %}
+
+    <h3>{{ object.title }}</h3>
+    <p>{{ object.happens }}</p>
+    <p>
+        Kategorier:
+        {% for cat in object.category.all %}
+            {{ cat.title }}
+        {% endfor %}
+    </p>
+    <p>Beskrivelse: {{ object.description }}</p>
+
+    <p>Oprettet af: {{ object.owner }}</p>
+
+{% endblock %}

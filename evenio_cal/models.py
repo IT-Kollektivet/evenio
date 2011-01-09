@@ -28,6 +28,13 @@ class Category(models.Model):
     def __unicode__(self):
         return self.title
 
+    class Meta:
+        verbose_name = "Category"
+        verbose_name_plural = "Categories"
+
+    def natural_key(self):
+        return (self.id, self.title)
+
 
 class Event(models.Model):
     """ A event """
@@ -61,7 +68,7 @@ class EventForm(ModelForm):
     class Meta:
         model = Event
 
-class EventProviderProfile(models.Model):
+class UserProfile(models.Model):
     """ A verified users profile """
     user = models.ForeignKey(User) # User from auth framework
     name = models.CharField(max_length=255)
@@ -70,6 +77,13 @@ class EventProviderProfile(models.Model):
     website = models.URLField(verify_exists=False, max_length=200, blank=True,
                               null=True)
     description = models.TextField()
+    verified = models.BooleanField(default=False)
+    public = models.BooleanField(default=False)
 
     def __unicode__(self):
-        return self.name 
+        return self.name
+
+    def get_absolute_url(self):
+        return ('profiles_profile_detail', (), { 'username': self.user.username })
+
+    get_absolute_url = models.permalink(get_absolute_url)
