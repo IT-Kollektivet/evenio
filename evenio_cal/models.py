@@ -8,6 +8,9 @@ from django.contrib.auth.models import User
 
 from django.forms import ModelForm
 
+# TODO:
+# Events that repeat on different days are not modelled here.
+# An Event should have a list of times when it occurs.
 REPEAT_CHOICES = (
         ('n','None'),
         ('d','Daily'),
@@ -38,7 +41,7 @@ class Category(models.Model):
 class Event(models.Model):
     """ A event """
     title = models.CharField(max_length=255) 
-    happens = models.DateTimeField()
+    happens = models.DateTimeField() # TODO: This should be a list of times!
     repeat = models.CharField(max_length=1, choices=REPEAT_CHOICES, default='n')
     address = models.CharField(max_length=255)
     category = models.ManyToManyField(Category)

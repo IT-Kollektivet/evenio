@@ -97,12 +97,10 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
-
     'django.contrib.admin',
     'django.contrib.admindocs',
     'evenio_cal',
-
-    'registration',
+    'evenio_reg',
     'profiles',
 )
 
