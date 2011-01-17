@@ -34,18 +34,18 @@ def list_events(request):
         json = serialize("json", events, use_natural_keys=True)
         return HttpResponse(json)
     else:
-        return object_detail(request, events, object_id=event_id)
+        return object_list(request, events)
 
 
 def create_event(request):
     """ Creates an event
     """
 
-    return create_object(request, Event, post_save_redirect="/evenio/")
+    return create_object(request, Event, post_save_redirect="/kalender/")
 
 
 def update_event(request, event_id):
     """ Updates an event
     """
 
-    return update_object(request, Event, event_id)
+    return update_object(request, Event, event_id, post_save_redirect="/kalender/")

@@ -31,12 +31,13 @@ class Category(models.Model):
     def __unicode__(self):
         return self.title
 
+    class Meta:
+        verbose_name = "Category"
+        verbose_name_plural = "Categories"
+
     def natural_key(self):
         return (self.id, self.title)
 
-#class CategoryManager(models.Manager):
-#    def get_by_natural_key(self, title):
-#        return self.get(title=title)
 
 class Event(models.Model):
     """ A event """
