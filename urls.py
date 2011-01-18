@@ -12,6 +12,9 @@ urlpatterns = patterns('',
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     (r'^admin/', include(admin.site.urls)),
 
+    # Comments
+    (r'^comments/', include('django.contrib.comments.urls')),
+
     # Profiles
     (r'^profiles/', include('profiles.urls')),
 
