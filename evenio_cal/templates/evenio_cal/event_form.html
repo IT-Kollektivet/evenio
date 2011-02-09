@@ -4,6 +4,7 @@
 
 <form action="" method="post">
     {% csrf_token %}
+    <hr />
 
     <p>{{ form.title.label_tag }} {{ form.title }}</p>
     <p>{{ form.happens.label_tag }} {{ form.happens }}</p>
