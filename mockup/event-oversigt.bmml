@@ -91,9 +91,15 @@
         <text>----%3E</text>
       </controlProperties>
     </control>
-    <control controlID="22" controlTypeID="com.balsamiq.mockups::Label" x="628" y="99" w="-1" h="-1" measuredW="36" measuredH="25" zOrder="17" locked="false" isInGroup="-1">
+    <control controlID="23" controlTypeID="com.balsamiq.mockups::Image" x="603" y="97" w="-1" h="-1" measuredW="65" measuredH="25" zOrder="17" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Login</text>
+        <src>./assets/signin.png</src>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="25" controlTypeID="com.balsamiq.mockups::Link" x="536" y="99" w="-1" h="-1" measuredW="47" measuredH="25" zOrder="18" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>English</text>
       </controlProperties>
     </control>
   </controls>

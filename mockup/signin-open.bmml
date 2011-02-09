@@ -63,7 +63,7 @@
     <control controlID="13" controlTypeID="com.balsamiq.mockups::Image" x="409" y="393" w="-1" h="-1" measuredW="25" measuredH="31" zOrder="11" locked="false" isInGroup="-1">
       <controlProperties>
         <filter>true</filter>
-        <src>../../../../../D%3A/Documents/evenio/pointers/assets/pointer_select-link.png</src>
+        <src>../../../../Documents/evenio/pointers/assets/pointer_select-link.png</src>
       </controlProperties>
     </control>
     <control controlID="14" controlTypeID="com.balsamiq.mockups::StickyNote" x="580" y="382" w="157" h="115" measuredW="109" measuredH="123" zOrder="14" locked="false" isInGroup="-1">
@@ -91,9 +91,15 @@
         <text>----%3E</text>
       </controlProperties>
     </control>
-    <control controlID="22" controlTypeID="com.balsamiq.mockups::Label" x="628" y="99" w="-1" h="-1" measuredW="36" measuredH="25" zOrder="17" locked="false" isInGroup="-1">
+    <control controlID="25" controlTypeID="com.balsamiq.mockups::Link" x="536" y="99" w="-1" h="-1" measuredW="47" measuredH="25" zOrder="17" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Login</text>
+        <text>English</text>
+      </controlProperties>
+    </control>
+    <control controlID="26" controlTypeID="com.balsamiq.mockups::Image" x="407" y="96" w="-1" h="-1" measuredW="257" measuredH="239" zOrder="18" locked="false" isInGroup="-1">
+      <controlProperties>
+        <src>./assets/signin-open.png</src>
+        <text/>
       </controlProperties>
     </control>
   </controls>
