@@ -21,7 +21,7 @@ def show_event(request, event_id):
         json = serialize("json", event, use_natural_keys=True)
         return HttpResponse(json)
     else:
-        return object_detail(request, events, object_id=event_id)
+        return object_detail(request, events, object_id=event_id, template_name='evenio/show_event.html')
 
 
 def list_events(request, year=None, month=None, day=None, max_results=0):
@@ -50,18 +50,18 @@ def list_events(request, year=None, month=None, day=None, max_results=0):
                          fields=('title', 'starts', 'ends', 'price'))
         return HttpResponse(json)
     else:
-        return object_list(request, events, template_name='evenio/base.html')
+        return object_list(request, events, template_name='evenio/list_events.html')
 
 
 def create_event(request):
     """ Creates an event
     """
 
-    return create_object(request, Event, post_save_redirect="/kalender/")
+    return create_object(request, Event, template_name='evenio/create_event.html')
 
 
 def update_event(request, event_id):
     """ Updates an event
     """
 
-    return update_object(request, Event, event_id, post_save_redirect="/kalender/")
+    return update_object(request, Event, event_id, template_name='evenio/update_event.html')
