@@ -1,22 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# TODO:
-# Events that repeat on different days are not modelled here.
-# An Event should have a list of times when it occurs.
-REPEAT_CHOICES = (
-        ('n','None'),
-        ('d','Daily'),
-        ('w','Weekly'),
-        ('m','Monthly'),
-        ('y','Yearly'),
-)
-
-LANG_CHOICES = (
-        ('da','Dansk'),
-        ('en','English'),
-)
-
 class Category(models.Model):
     """ A category """
     title = models.CharField(max_length=255)
