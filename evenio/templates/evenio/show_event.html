@@ -1,0 +1,27 @@
+{% extends 'evenio/base.html' %}
+{% load comments %}
+
+{% block content %}
+
+<div>
+    <h2 id="title">{{ event.title }}</h2>
+    <span id="category">{{ event.category.title }}</span>
+    <span id="starts">{{ event.starts }}</span>
+    <span id="ends">{{ event.ends }}</span>
+    <span id="venue">{{ event.venue }}</span>
+    <span id="price">{{ event.price }}</span>
+    <span id="address">{{ event.address }}</span>
+    <p id="description">{{ event.description }}</p>
+</div>
+
+<hr />
+
+{% get_comment_count for event as comment_count %}
+
+<p>{{ comment_count }} comments</p>
+
+{% render_comment_list for event %}
+
+{% render_comment_form for event %}
+
+{% endblock %}

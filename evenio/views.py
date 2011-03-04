@@ -21,7 +21,11 @@ def show_event(request, event_id):
         json = serialize("json", event, use_natural_keys=True)
         return HttpResponse(json)
     else:
-        return object_detail(request, events, object_id=event_id, template_name='evenio/show_event.html')
+        return object_detail(request,
+                            events,
+                            object_id=event_id,
+                            template_object_name='event',
+                            template_name='evenio/show_event.html',)
 
 
 def list_events(request, year=None, month=None, day=None, max_results=0):
