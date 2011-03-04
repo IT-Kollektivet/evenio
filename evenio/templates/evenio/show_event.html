@@ -5,12 +5,21 @@
 
 <div>
     <h2 id="title">{{ event.title }}</h2>
-    <span id="category">{{ event.category.title }}</span>
-    <span id="starts">{{ event.starts }}</span>
-    <span id="ends">{{ event.ends }}</span>
-    <span id="venue">{{ event.venue }}</span>
-    <span id="price">{{ event.price }}</span>
-    <span id="address">{{ event.address }}</span>
+    <div id="category">Category: {{ event.get_categories_string }}</div>
+    <div id="starts">Starts: {{ event.starts }}</div>
+
+    {% if event.ends %}
+    <div id="ends">Ends: {{ event.ends }}</div>
+    {% endif %}
+
+    <div id="venue">Venue: {{ event.venue_name }}</div>
+
+    <div id="price">Price: {{ event.price }}</div>
+
+    {% if event.address %}
+    <div id="address">Address: {{ event.address }}</div>
+    {% endif %}
+
     <p id="description">{{ event.description }}</p>
 </div>
 
