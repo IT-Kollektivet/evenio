@@ -5,6 +5,7 @@ from django.utils.translation import ugettext as _
 class Category(models.Model):
     """ A category """
     title = models.CharField(max_length=255)
+    slug = models.SlugField(max_length=64)
 
     def __unicode__(self):
         return self.title
@@ -49,6 +50,9 @@ class Event(models.Model):
     comments_anonymous_before = models.BooleanField(default=True)
     comments_anonymous_after = models.BooleanField(default=True)
 
+    canceled = models.BooleanField(default=False)
+    changed = models.BooleanField(default=False)
+
     def __unicode__(self):
         return self.title
 
@@ -57,6 +61,7 @@ class Event(models.Model):
 
     def get_categories_string(self):
         """Admin list"""
-        ", ".join([c.title for c in self.categories.all()])
+        return ", ".join([c.title for c in self.categories.all()])
     get_categories_string.short_description = _("Categories")
+    
     
