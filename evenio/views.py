@@ -7,6 +7,7 @@ from django.views.generic.create_update import create_object, update_object
 from django.core.serializers import serialize
 from django.http import HttpResponse
 import datetime
+import re
 
 from models import Event
 
@@ -135,4 +136,20 @@ def search_events(request, search_string=None):
     """ Searches among events and produces a list of search results
     """
 
-    search_string = request.GET.get("search_string", None) or search_string
+    max_results = request.GET.get('max_results', 10)
+
+    events = Event.objects.all()
+
+    query_string = request.GET.get("search_string", None)
+    if query_string is None:
+        if search_string is None or re.match(r'^\s*$', search_string):
+            # Fejl -- intet søgeord
+            pass
+
+        for substr in re.split(r'-+', search_string):
+            events = events.filter(__contains=substr)
+
+    if max_results > 0:
+        events = events[:max_results]
+
+    return object_list(request, events, template_name='evenio/list_events.html')
