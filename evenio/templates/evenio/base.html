@@ -1,0 +1,11 @@
+Hello! I'm base.html
+
+{% block content %}
+
+    {% for object in object_list %}
+        <a href="{% url evenio:show object.id %}">
+            {{ object.title }}</a>
+    {% endfor %}
+    <br />
+
+{% endblock %}
