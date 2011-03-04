@@ -6,3 +6,4 @@ class EventAdmin(admin.ModelAdmin):
     pass
 
 admin.site.register(models.Event, EventAdmin)
+admin.site.register(models.Category)
