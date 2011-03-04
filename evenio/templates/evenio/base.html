@@ -1,11 +1,14 @@
-Hello! I'm base.html
+{% load i18n %}
+<html>
+<title>{% trans "evenio" %}</title>
+<body>
+{% block header %}
+  <h1>Evenio</h1>
+{% endblock %}
 
 {% block content %}
 
-    {% for object in object_list %}
-        <a href="{% url evenio:show object.id %}">
-            {{ object.title }}</a>
-    {% endfor %}
-    <br />
-
 {% endblock %}
+
+</body>
+</html>
