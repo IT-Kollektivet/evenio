@@ -42,7 +42,7 @@ MONTHS = { # {{{
 
     'marts': 3,
     'march': 3,
-    'mar': 3
+    'mar': 3,
     '03': 3,
 
     'april': 4,
@@ -143,7 +143,7 @@ def search_events(request, search_string=None):
     query_string = request.GET.get("search_string", None)
     if query_string is None:
         if search_string is None or re.match(r'^\s*$', search_string):
-            # Fejl -- intet søgeord
+            # Fejl -- intet
             pass
 
         for substr in re.split(r'-+', search_string):
