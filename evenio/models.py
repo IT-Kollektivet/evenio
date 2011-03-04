@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # TODO:
 # Events that repeat on different days are not modelled here.

@@ -101,7 +101,6 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'django.contrib.comments',
     'evenio',
-    'profiles',
 )
 
 # Telling where to find userprofiles. 
