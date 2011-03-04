@@ -2,3 +2,6 @@
 *.sw*
 *~
 dbevenio
+/.project
+/.pydevproject
+/.settings

@@ -82,7 +82,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'evenio.urls'
+ROOT_URLCONF = 'testproject.urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -101,7 +101,7 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
 
     'django.contrib.comments',
-
+    'evenio',
     'evenio_cal',
     'evenio_reg',
     'profiles',
