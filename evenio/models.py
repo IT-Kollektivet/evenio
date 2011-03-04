@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+<<<<<<< HEAD
+=======
 
 # TODO:
 # Events that repeat on different days are not modelled here.
@@ -16,6 +18,7 @@ LANG_CHOICES = (
         ('da','Dansk'),
         ('en','English'),
 )
+>>>>>>> 453ccf392151983c00c02afdcf03c9ab4f979228
 
 class Category(models.Model):
     """ A category """
@@ -60,7 +63,6 @@ class Event(models.Model):
 
     def __unicode__(self):
         return self.title
-
 
     class Meta:
         ordering = ('-starts',)
