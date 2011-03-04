@@ -10,5 +10,6 @@ urlpatterns = patterns('',
     url(r'^create$', 'evenio.views.create_event', name='create'),
     # Lists for years, months and days are handled in a view.
     # Put this view lastly because it'll probably catch some unwanted URLs.
-    url(r'^(\w+|\d+)(?:/(\w+|\d+))?$', 'evenio.views.list_events', name='list'),
+    url(r'^(?P<year>\d{4})(?:/(?P<month>\w+|\d+))?$', 'evenio.views.list_events', name='list'),
+    url(r'^(?P<month>\w+|\d+)$', 'evenio.views.list_events', name='list')
 )
