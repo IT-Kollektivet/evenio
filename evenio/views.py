@@ -28,9 +28,67 @@ def show_event(request, event_id):
                             template_name='evenio/show_event.html',)
 
 
-def list_events(request, year=None, month=None, day=None, max_results=0):
+MONTHS = { # {{{
+    'januar': 1,
+    'january': 1,
+    'jan': 1,
+    '01': 1,
+
+    'februar': 2,
+    'february': 2,
+    'feb': 2,
+    '02': 2,
+
+    'marts': 3,
+    'march': 3,
+    'mar': 3
+    '03': 3,
+
+    'april': 4,
+    'apr': 4,
+    '04': 4,
+
+    'may': 5,
+    'maj': 5,
+    '05': 5,
+
+    'juni': 6,
+    'june': 6,
+    'jun': 6,
+    '06': 6,
+
+    'juli': 7,
+    'july': 7,
+    'jul': 7,
+    '07': 7,
+
+    'august': 8,
+    'aug': 8,
+    '08': 8,
+
+    'september': 9,
+    'sep': 9,
+    '09': 9,
+
+    'oktober': 10,
+    'october': 10,
+    'oct': 10,
+    'okt': 10,
+    '10': 10,
+
+    'november': 11,
+    'nov': 11,
+    '11': 11,
+    
+    'december': 12,
+    'dec': 12,
+    '12': 12,
+} # }}}
+def list_events(request, year=None, month=None, day=None):
     """ List events
     """
+
+    max_results = request.GET.get('max_results', None)
     
     events = Event.objects.all()
 
@@ -38,8 +96,11 @@ def list_events(request, year=None, month=None, day=None, max_results=0):
     
     if not year:
         year = now.year
+
+    month = MONTHS.get(month, None)
     if not month:
         month = now.month
+
     if not day:
         day = now.day
     
@@ -69,3 +130,9 @@ def update_event(request, event_id):
     """
 
     return update_object(request, Event, event_id, template_name='evenio/update_event.html')
+
+def search_events(request, search_string=None):
+    """ Searches among events and produces a list of search results
+    """
+
+    search_string = request.GET.get("search_string", None) or search_string
