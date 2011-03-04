@@ -1,20 +1,5 @@
 from django.db import models
-
-# TODO:
-# Events that repeat on different days are not modelled here.
-# An Event should have a list of times when it occurs.
-REPEAT_CHOICES = (
-        ('n','None'),
-        ('d','Daily'),
-        ('w','Weekly'),
-        ('m','Monthly'),
-        ('y','Yearly'),
-)
-
-LANG_CHOICES = (
-        ('da','Dansk'),
-        ('en','English'),
-)
+from django.contrib.auth.models import User
 
 class Category(models.Model):
     """ A category """
@@ -59,7 +44,6 @@ class Event(models.Model):
 
     def __unicode__(self):
         return self.title
-
 
     class Meta:
         ordering = ('-starts',)
