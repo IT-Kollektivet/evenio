@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.translation import ugettext as _
 
 class Category(models.Model):
     """ A category """
@@ -11,6 +12,7 @@ class Category(models.Model):
     class Meta:
         verbose_name = "Category"
         verbose_name_plural = "Categories"
+        ordering = ('title',)
 
     def natural_key(self):
         return (self.id, self.title)
@@ -19,13 +21,18 @@ class Category(models.Model):
 class Event(models.Model):
     """ A event """
     title = models.CharField(max_length=255) 
+    slug = models.SlugField(max_length=64)
+    
     starts = models.DateTimeField() # TODO: This should be a list of times!
     ends = models.DateTimeField(null=True, blank=True) # TODO: This should be a list of times!
+
     venue_name = models.CharField(max_length=255)
     address = models.CharField(max_length=255, null=True, blank=True)
-    category = models.ManyToManyField(Category)
-    description = models.TextField()
 
+    categories = models.ManyToManyField(Category)
+    
+    description = models.TextField(blank=True)
+    
     created = models.DateTimeField(auto_now_add=True)
     changed = models.DateTimeField(auto_now=True)
 
@@ -47,3 +54,9 @@ class Event(models.Model):
 
     class Meta:
         ordering = ('-starts',)
+
+    def get_categories_string(self):
+        """Admin list"""
+        ", ".join([c.title for c in self.categories.all()])
+    get_categories_string.short_description = _("Categories")
+    
