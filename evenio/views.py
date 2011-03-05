@@ -9,6 +9,8 @@ from django.http import HttpResponse, Http404
 import datetime
 import re
 
+import json
+
 from models import Event
 from calendar import monthrange
 from django.core.urlresolvers import reverse
@@ -131,14 +133,14 @@ def list_events(request, year=None, month=None, day=None):
     if request.is_ajax():
         
         events_dict = [{'title': event.title,
-                        'starts': event.starts,
-                        'ends': event.ends,
+                        'starts': event.starts.isoformat(),
+                        'ends': event.ends.isoformat() if event.ends else None,
                         'price': event.price,
-                        'categories': [{'title': c.title, 'slug': c.slug} for c in event.categories.all],
-                        'show_url': reverse('evenio:show', event.id)} for event in events]
+                        'categories': [{'title': c.title, 'slug': c.slug} for c in event.categories.all()],
+                        'show_url': reverse('evenio:show', args=(event.id,))} for event in events]
         
-        json = serialize("json", events_dict,)
-        return HttpResponse(json)
+        data = json.dumps(events_dict,)
+        return HttpResponse(data)
     else:
         return object_list(request, events, template_name='evenio/list_events.html')
 
