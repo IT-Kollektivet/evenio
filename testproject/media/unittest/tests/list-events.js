@@ -12,6 +12,7 @@ function failedCallback(data, textStatus, jqXHR) {
 
 module("List Events", {
   setup: function () {
+    // this.uriBase = "/evenio/";
     this.uriBase = "http://192.168.1.102:8000/evenio/";
     $.ajaxSetup({
       async: true
