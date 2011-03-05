@@ -2,6 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext as _
 
+from django.contrib.comments.models import Comment
+from django.contrib.comments.signals import comment_was_flagged
+
 class Category(models.Model):
     """ A category """
     title = models.CharField(max_length=255)
@@ -23,7 +26,7 @@ class Event(models.Model):
     """ A event """
     title = models.CharField(max_length=255) 
     slug = models.SlugField(max_length=64)
-    
+
     starts = models.DateTimeField() # TODO: This should be a list of times!
     ends = models.DateTimeField(null=True, blank=True) # TODO: This should be a list of times!
 
@@ -31,9 +34,9 @@ class Event(models.Model):
     address = models.CharField(max_length=255, null=True, blank=True)
 
     categories = models.ManyToManyField(Category)
-    
+
     description = models.TextField(blank=True)
-    
+
     created = models.DateTimeField(auto_now_add=True)
     changed = models.DateTimeField(auto_now=True)
 
@@ -63,5 +66,21 @@ class Event(models.Model):
         """Admin list"""
         return ", ".join([c.title for c in self.categories.all()])
     get_categories_string.short_description = _("Categories")
-    
-    
+
+
+class FlaggedComment(models.Model):
+    """
+    A (dirty hack?) way to register flagged comments
+    """
+    comment = models.ForeignKey(Comment)
+
+    def __unicode__(self):
+        return self.comment.user_name + ': ' + self.comment.comment
+
+def on_comment_was_flagged(sender, comment, request, flag, *args, **kwargs):
+    flagged = FlaggedComment(comment=comment)
+    flagged.save()
+
+    print comment.id
+
+comment_was_flagged.connect(on_comment_was_flagged)
