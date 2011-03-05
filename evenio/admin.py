@@ -12,5 +12,9 @@ class EventAdmin(admin.ModelAdmin):
     search_fields = ('title',)
     prepopulated_fields = {"slug": ("title",)}
 
+class FlaggedCommentAdmin(admin.ModelAdmin):
+    pass
+
 admin.site.register(models.Event, EventAdmin)
 admin.site.register(models.Category, CategoryAdmin)
+admin.site.register(models.FlaggedComment, FlaggedCommentAdmin)

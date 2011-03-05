@@ -99,9 +99,10 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.admin',
     'django.contrib.admindocs',
-    'django.contrib.comments',
     'evenio',
-)
+
+     # Important to be after evenio for comment templates to work!
+    'django.contrib.comments',)
 
 # Telling where to find userprofiles. 
 # Should be appname.modelname, NOT appname.models.modelname

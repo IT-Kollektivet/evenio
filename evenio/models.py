@@ -2,6 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext as _
 
+from django.contrib.comments.models import Comment
+from django.contrib.comments.signals import comment_was_flagged
+
 class Category(models.Model):
     """ A category """
     title = models.CharField(max_length=255)
@@ -23,7 +26,7 @@ class Event(models.Model):
     """ A event """
     title = models.CharField(max_length=255) 
     slug = models.SlugField(max_length=64)
-    
+
     starts = models.DateTimeField() # TODO: This should be a list of times!
     ends = models.DateTimeField(null=True, blank=True) # TODO: This should be a list of times!
 
@@ -31,9 +34,9 @@ class Event(models.Model):
     address = models.CharField(max_length=255, null=True, blank=True)
 
     categories = models.ManyToManyField(Category)
-    
+
     description = models.TextField(blank=True)
-    
+
     created = models.DateTimeField(auto_now_add=True)
     changed = models.DateTimeField(auto_now=True)
 
@@ -63,8 +66,28 @@ class Event(models.Model):
         """Admin list"""
         return ", ".join([c.title for c in self.categories.all()])
     get_categories_string.short_description = _("Categories")
-    
 
+class FlaggedComment(models.Model):
+    """
+    A (dirty hack?) way to register flagged comments
+    """
+    comment = models.ForeignKey(Comment)
+
+    def __unicode__(self):
+        return self.comment.user_name + ': ' + self.comment.comment
+
+def on_comment_was_flagged(sender, comment, request, flag, *args, **kwargs):
+    flagged = FlaggedComment(comment=comment)
+    flagged.save()
+
+    print comment.id
+
+comment_was_flagged.connect(on_comment_was_flagged)
+
+
+
+
+### GENERATE TEST DATA ###
 
 def generate_test_data():
     from datetime import datetime, timedelta
@@ -72,22 +95,22 @@ def generate_test_data():
     dates = 300
     now = datetime.now()
     from django.template.defaultfilters import slugify
-    
+
     categories = ["Food", "Concert", "Party", "Talk", "Poetry"]
-    
+
     names = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
     names = slugify(names).split("-")
-    
+
     print names
-    
+
     for c in categories:
         cat = Category(title=c, slug=slugify(c))
         cat.save()
-    
+
     categories = Category.objects.all()
-    
+
     for _ in range(1000):
-        
+
         e = Event()
         e.title = "%s %s" % (choice(names), choice(names))
         e.title = e.title[0].upper() + e.title[1:]
@@ -98,7 +121,3 @@ def generate_test_data():
         e.save()
         for c in categories.order_by('?')[:randint(1,3)]:
             e.categories.add(c)
-        
-
-        
-

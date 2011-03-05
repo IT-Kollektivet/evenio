@@ -1,0 +1,9 @@
+{% load comments %}
+{% get_comment_list for evenio.event event.id as comment_list %}
+
+{% for comment in comment_list %}
+    <p>Posted by: {{ comment.user_name }} on {{ comment.submit_date }}</p>
+    <p>Comment: {{ comment.comment }}</p>
+    <a href="/comments/flag/{{ comment.id }}">FLAG AS INAPPROPRIATE!</a>
+{% endfor %}
+
