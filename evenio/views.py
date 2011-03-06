@@ -11,6 +11,8 @@ import re
 
 import json
 
+import evenio_settings
+
 from models import Event
 from calendar import monthrange
 from django.core.urlresolvers import reverse
@@ -33,67 +35,12 @@ def show_event(request, event_id):
                             template_name='evenio/show_event.html',)
 
 
-MONTHS = { # {{{
-    'januar': 1,
-    'january': 1,
-    'jan': 1,
-    '01': 1,
-
-    'februar': 2,
-    'february': 2,
-    'feb': 2,
-    '02': 2,
-
-    'marts': 3,
-    'march': 3,
-    'mar': 3,
-    '03': 3,
-
-    'april': 4,
-    'apr': 4,
-    '04': 4,
-
-    'may': 5,
-    'maj': 5,
-    '05': 5,
-
-    'juni': 6,
-    'june': 6,
-    'jun': 6,
-    '06': 6,
-
-    'juli': 7,
-    'july': 7,
-    'jul': 7,
-    '07': 7,
-
-    'august': 8,
-    'aug': 8,
-    '08': 8,
-
-    'september': 9,
-    'sep': 9,
-    '09': 9,
-
-    'oktober': 10,
-    'october': 10,
-    'oct': 10,
-    'okt': 10,
-    '10': 10,
-
-    'november': 11,
-    'nov': 11,
-    '11': 11,
-    
-    'december': 12,
-    'dec': 12,
-    '12': 12,
-} # }}}
-def list_events(request, year=None, month=None, day=None):
+def list_events(request, year=None, month=None, day=None, max_results=0):
     """ List events
     """
 
-    max_results = request.GET.get('max_results', 0)
+    if not max_results:
+        max_results = request.GET.get('max_results', 0)
     
     events = Event.objects.all()
 
@@ -107,11 +54,12 @@ def list_events(request, year=None, month=None, day=None):
     try:
         month = int(month)
     except TypeError:
-        month = MONTHS.get(month, None)
+        month = evenio_settings.MONTH_SLUGS.get(month, None)
     if not month:
         month = now.month
     
     if not day:
+        # If no day is specified, we just return until the end of the month.
         day = now.day
         until_day = monthrange(year, month)[1]
     else:
@@ -125,13 +73,17 @@ def list_events(request, year=None, month=None, day=None):
         raise Http404()
     
     events = events.filter(starts__gte=datetime.datetime(year=year, month=month, day=day),
-                           starts__lte=datetime.datetime(year=year, month=month, day=until_day))
+                           starts__lte=datetime.datetime(year=year, month=month, day=until_day,
+                                                         hour=23, minute=59, second=59) )
 
+    # If max results have been specified
     if max_results > 0:
         events = events[:max_results]
 
     if request.is_ajax():
         
+        # Put data explicitly in a dictionary instead of using
+        # builtin Django functions
         events_dict = [{'title': event.title,
                         'starts': event.starts.isoformat(),
                         'ends': event.ends.isoformat() if event.ends else None,
