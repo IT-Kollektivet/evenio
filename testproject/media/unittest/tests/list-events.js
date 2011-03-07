@@ -7,7 +7,7 @@ function successCallback(data, textStatus, jqXHR) {
 }
 function failedCallback(data, textStatus, jqXHR) {
   var status = data.status;
-  ok(true, status);
+  ok(false, status);
 }
 
 module("List Events", {
