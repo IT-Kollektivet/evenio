@@ -1,3 +1,19 @@
 {% extends "base.html" %}
 
+{% block content_header %}
+  {% if event_list %}
+  <h1>{{ event_list.0.starts|date:"F"|capfirst }}</h1>
+  {% else %}
+  <h1>DER SKER INGENTING!</h1>
+  {% endif %}
+{% endblock %}
 
+{% block content %}
+
+  {% for event in event_list %}
+  <div class="event_item">
+    <div class="event_date">{{ event.starts|date:"j/n" }}</div>
+  </div>
+  {% endfor %}
+
+{% endblock %}

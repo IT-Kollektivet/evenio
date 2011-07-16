@@ -4,6 +4,8 @@ from django.template.context import RequestContext
 from django.contrib.auth.views import login, logout as auth_logout
 from django.utils.translation import ugettext_lazy as _
 
+from evenio import views as evenio_views
+
 import forms
 
 def login_and_redirect(request):
@@ -15,8 +17,6 @@ def login_and_redirect(request):
 def logout(request):
     return auth_logout(request, next_page='/')
 
-def frontpage(request):
-    
-    context = RequestContext(request, {'title': _(u"Frontpage")})
-    return render_to_response("frontpage.html", context)
+class Frontpage(evenio_views.EventList):
+    template_name = 'frontpage.html'
     

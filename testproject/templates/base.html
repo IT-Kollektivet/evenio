@@ -47,7 +47,9 @@
 
 <div id="content_container_container" class="horizontal_container">
   <div id="content_header">
-    <h1>{{ title }}</h1>
+    {% block content_header %}
+      <h1>{{ title }}</h1>
+    {% endblock %}
   </div>
   <div style="position:relative">
     <div class="transparency"></div>
