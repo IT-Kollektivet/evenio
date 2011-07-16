@@ -1,6 +1,9 @@
 from django.conf.urls.defaults import *
 from django.http import Http404, HttpResponse
-from views import UpdateEvent
+from views import EventUpdate
+from views import EventDetail
+from views import EventList
+from views import EventCreate
 
 urlpatterns = patterns('',
     url(r'^$', 'evenio.views.list_events', name='list'),
