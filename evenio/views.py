@@ -34,6 +34,7 @@ class EventDetail(DetailView):
         else:
             return event
 
+
 class EventList(ListView):
     template_name = 'templates/event_list.html'
     context_object_name = 'event_list'
@@ -81,6 +82,7 @@ class EventList(ListView):
                     hour=23,
                     minute=59,
                     second=59)
+                )
 
         # If max results have been specified
         if max_results > 0:
@@ -104,9 +106,13 @@ class EventList(ListView):
 
 
 class EventCreate(CreateView):
-    template = 'templates/event_form.html'
-    context_object_name = 'event_form'
+    """ Creates an event
+    """
+
+    form_class = EventForm
     model = Event
+    template_name = 'evenio/event_form.html'
+    context_object_name = 'event'
 
     # NYAN NYAN NYAN NYAN NYAN NYAN NYAN NYAN NYAN NYAN NYAN NYAN!!!
 
