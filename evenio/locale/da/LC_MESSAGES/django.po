@@ -1,0 +1,115 @@
+# Evenio en-da
+# Copyright (C) 2011
+# This file is distributed under the same license as the Evenio package.
+# Simon Shine <shreddedglory@gmail.com>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-07-17 00:41+0200\n"
+"PO-Revision-Date: 2011-07-17 00:29+0100\n"
+"Last-Translator: Simon Shine <shreddedglory@gmail.com>\n"
+"Language-Team: evenio@lists.riseup.net\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: models.py:39
+msgid "Title"
+msgstr "Titel"
+
+#: models.py:44
+msgid "Starts"
+msgstr "Begynder"
+
+#: models.py:45
+msgid "Ends"
+msgstr "Afslutter"
+
+#: models.py:47
+msgid "Venue"
+msgstr "Venue"
+
+#: models.py:48
+msgid "Address"
+msgstr "Adresse"
+
+#: models.py:50
+msgid "Category"
+msgstr "Kategori"
+
+#: models.py:52
+msgid "Description"
+msgstr "Beskrivelse"
+
+#: models.py:54
+msgid "Created"
+msgstr "Oprettet"
+
+#: models.py:55 models.py:72
+msgid "Changed"
+msgstr "Ændret"
+
+#: models.py:57
+msgid "Owner"
+msgstr "Ejer"
+
+#: models.py:58
+msgid "Owner (anonymous)"
+msgstr "Ejer (anonym)"
+
+#: models.py:60
+msgid "Price"
+msgstr "Pris"
+
+#: models.py:63
+msgid "RSVP"
+msgstr "RSVP"
+
+#: models.py:64
+msgid "RSVP (anonymous)"
+msgstr "RSVP (anonym)"
+
+#: models.py:65
+msgid "Comments before event"
+msgstr "Kommentarer før afholdelse"
+
+#: models.py:66
+msgid "Comments after event"
+msgstr "Kommentarer efter afholdelse"
+
+#: models.py:67
+msgid "Comments (anonymous) before event"
+msgstr "Kommentarer (anonyme) før afholdelse"
+
+#: models.py:68
+msgid "Comments (anonymous) after event"
+msgstr "Kommentarer (anonyme) efter afholdelse"
+
+#: models.py:71
+msgid "Cancelled"
+msgstr "Aflyst"
+
+#: models.py:92
+msgid "Categories"
+msgstr "Kategorier"
+
+#: templates/comments/list.html:5
+msgid "Submitted by"
+msgstr "Indsendt af"
+
+#: templates/comments/list.html:5
+msgid "the"
+msgstr "den"
+
+#: templates/evenio/base.html:3
+msgid "evenio"
+msgstr "evenio"
+
+#: templates/evenio/event_form.html:7
+msgid "Submit"
+msgstr "Indsend"
+

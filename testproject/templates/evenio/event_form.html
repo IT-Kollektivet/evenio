@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content_header %}
+  {% if event %}
+    <h1>{{ event.title }}</h1>
+  {% else %}
+    <h1>Ingen begivenhed fundet</h1>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+    <form method="POST">{% csrf_token %}
+      <table class="event_form">
+        {{ form.as_table }}
+      </table>
+      <button type="submit">{% trans "Indsend" %}</button>
+    </form>
+
+{% endblock %}
