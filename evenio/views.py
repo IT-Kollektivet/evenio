@@ -26,8 +26,8 @@ class EventDetail(DetailView):
     context_object_name = 'event_list'
     paginate_by = 10
 
-    def get_queryset(self):
-        event = Event.objects.all().get(pk=event_id)
+    def get_queryset(self, slug):
+        event = Event.objects.all().get(slug=slug)
 
         if self.request.is_ajax():
             json = serialize("json", event, use_natural_keys=True)
