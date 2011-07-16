@@ -2,8 +2,14 @@
 {% load i18n evenio_site_tags %}
 
 {% block content %}
-  <form method="POST" action="{% url login_and_redirect %}">
-    {% login_form %}
+  
+  {% if form.errors %}
+  <div class="error">{% trans "Brugernavn eller password forkert." %}</div>
+  {% endif %}
+  
+  <form method="POST" action="{% url login_and_redirect %}?next=/">
+    {% csrf_token %}
+    {{ form.as_p }}
     <button>{% trans "Log ind" %}</button>
   </form>
 {% endblock %}

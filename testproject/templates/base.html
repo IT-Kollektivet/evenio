@@ -1,7 +1,7 @@
 {% load i18n evenio_site_tags %}<!DOCTYPE HTML>
 <html>
 <head>
-  <title>{% block title %}Title of the document{% endblock %}</title>
+  <title>{% block title %}{{ title }}{% endblock %}</title>
   <link rel="stylesheet" type="text/css" media="all" href="/media/css/reset.css" />
   <link rel="stylesheet" type="text/css" media="all" href="/media/css/all.css" />
   <script type="text/javascript" src="/media/js/jquery-1.6.2.min.js"></script>
@@ -12,7 +12,7 @@
 
 <div id="header">
   <div id="header_container" class="horizontal_container">
-    <a href=""><div id="logo"></div></a>
+    <a href="{% url frontpage %}"><div id="logo"></div></a>
     <ul id="menu">
       <li class="selected"><a href="">{% trans "Kalender" %}</a></li>
       <li><a href="">{% trans "Opret event" %}</a></li>
@@ -20,14 +20,23 @@
       <li><a href="">{% trans "Hvem er vi" %}</a></li>
       <li><a href="">{% trans "Hjælp" %}</a></li>
     </ul>
-    <ul id="meta_menu">
-      <li><a href="">{% trans "Udskriv" %}</a></li>
-      <li class="has_arrow"><a href="#" onclick="toggle_login_form(this);">{% trans "Log ind" %}</a></li>
-    </ul>
+    <div id="meta_menu">
+      {% if request.user.is_authenticated %}
+      <div id="user_box">{% trans "Logget ind som:" %} {{ request.user }}</div>
+      {% endif %}
+      <ul>
+        <li><a href="">{% trans "Udskriv" %}</a></li>
+        {% if request.user.is_authenticated %}
+        <li><a href="{% url logout %}">{% trans "Log ud" %}</a></li>
+        {% else %}
+        <li class="has_arrow"><a href="#" onclick="toggle_login_form(this);">{% trans "Log ind" %}</a></li>
+        {% endif %}
+      </ul>
+    </div>
     <div class="clearfix"></div>
     
     <div id="login_form">
-      <form method="POST" action="{% url login_and_redirect %}">
+      <form method="POST" action="{% url login_and_redirect %}?next={{ request.path }}">
         {% login_form %}
         <button>{% trans "Log ind" %}</button>
       </form>
@@ -36,9 +45,20 @@
   </div>
 </div>
 
-{% block content %}
-<p>Intet at se!</p>
-{% endblock %}
+<div id="content_container_container" class="horizontal_container">
+  <div id="content_header">
+    <h1>{{ title }}</h1>
+  </div>
+  <div style="position:relative">
+    <div class="transparency"></div>
+    <div id="content_container">
+      {% block content %}
+        <p>Intet at se!</p>
+      {% endblock %}
+    </div>
+  </div>
+</div>
+
 </body>
 
 </html>
