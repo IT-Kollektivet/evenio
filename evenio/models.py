@@ -5,6 +5,11 @@ from django.utils.translation import ugettext as _
 from django.contrib.comments.models import Comment
 from django.contrib.comments.signals import comment_was_flagged
 
+from django.template.defaultfilters import slugify
+from misc import slugify_uniquely
+from misc import AutoSlugField
+
+
 class Category(models.Model):
     """ A category """
     title = models.CharField(max_length=255)
@@ -22,10 +27,17 @@ class Category(models.Model):
         return (self.id, self.title)
 
 
+def slugify_event(value):
+    """ Slugify function for Event slugs. """
+    return slugify_uniquely(value, Event)
+
+
 class Event(models.Model):
-    """ A event """
-    title = models.CharField(max_length=255) 
-    slug = models.SlugField(max_length=64)
+    """ An event """
+
+    title = models.CharField(max_length=255)
+    slug = AutoSlugField(max_length=64, unique=True,
+            populate_from=('title',), slugify_func=slugify_event)
 
     starts = models.DateTimeField() # TODO: This should be a list of times!
     ends = models.DateTimeField(null=True, blank=True) # TODO: This should be a list of times!
@@ -96,7 +108,6 @@ def generate_test_data():
     from random import choice, randint
     dates = 300
     now = datetime.now()
-    from django.template.defaultfilters import slugify
 
     categories = ["Food", "Concert", "Party", "Talk", "Poetry"]
 

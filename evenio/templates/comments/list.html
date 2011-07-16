@@ -4,6 +4,6 @@
 {% for comment in comment_list %}
     <p>Indsendt af {{ comment.user_name }} den {{ comment.submit_date }}</p>
     <p>Kommentar: {{ comment.comment }}</p>
-    <a href="/comments/flag/{{ comment.id }}">Rapportér som upassende</a>
+    <a href="/comments/flag/{{ comment.id }}">Rapportér kommentar som upassende</a>
 {% endfor %}
 
