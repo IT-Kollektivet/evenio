@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.comments.models import Comment
 from django.contrib.comments.signals import comment_was_flagged
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
 
 from django.core.urlresolvers import reverse
 
@@ -36,38 +36,40 @@ def slugify_event(value):
 class Event(models.Model):
     """ An event """
 
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=255, verbose_name=_("Title"))
     slug = AutoSlugField(max_length=64, unique=True,
             populate_from=('title',), slugify_func=slugify_event)
 
-    starts = models.DateTimeField() # TODO: This should be a list of times!
-    ends = models.DateTimeField(null=True, blank=True) # TODO: This should be a list of times!
+    # TODO: These should be lists of times!
+    starts = models.DateTimeField(verbose_name=_("Starts"))
+    ends = models.DateTimeField(null=True, blank=True, verbose_name=_("Ends"))
 
-    venue_name = models.CharField(max_length=255)
-    address = models.CharField(max_length=255, null=True, blank=True)
+    venue_name = models.CharField(max_length=255, verbose_name=_("Venue"))
+    address = models.CharField(max_length=255, null=True, blank=True, verbose_name=_("Address"))
 
-    categories = models.ManyToManyField(Category)
+    categories = models.ManyToManyField(Category, verbose_name=_("Category"))
 
-    description = models.TextField(blank=True)
+    description = models.TextField(blank=True, verbose_name=_("Description"))
 
-    created = models.DateTimeField(auto_now_add=True)
-    changed = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True, verbose_name=_("Created"))
+    changed = models.DateTimeField(auto_now=True, verbose_name=_("Changed"))
 
-    owner = models.ForeignKey(User, null=True, blank=True)
-    owner_anonymous = models.CharField(max_length=255, null=True, blank=True)
+    owner = models.ForeignKey(User, null=True, blank=True, verbose_name=_("Owner"))
+    owner_anonymous = models.CharField(max_length=255, null=True, blank=True, verbose_name=_("Owner (anonymous)"))
 
-    price = models.IntegerField(null=True, blank=True)
+    price = models.IntegerField(null=True, blank=True, verbose_name=_("Price"))
 
     # Allow:
-    rsvp = models.BooleanField(default=True)
-    rsvp_anonymous = models.BooleanField(default=True)
-    comments_before = models.BooleanField(default=True)
-    comments_after = models.BooleanField(default=True)
-    comments_anonymous_before = models.BooleanField(default=True)
-    comments_anonymous_after = models.BooleanField(default=True)
+    rsvp = models.BooleanField(default=True, verbose_name=_("RSVP"))
+    rsvp_anonymous = models.BooleanField(default=True, verbose_name=_("RSVP (anonymous)"))
+    comments_before = models.BooleanField(default=True, verbose_name=_("Comments before event"))
+    comments_after = models.BooleanField(default=True, verbose_name=_("Comments after event"))
+    comments_anonymous_before = models.BooleanField(default=True, verbose_name=_("Comments (anonymous) before event"))
+    comments_anonymous_after = models.BooleanField(default=True, verbose_name=_("Comments (anonymous) after event"))
 
-    canceled = models.BooleanField(default=False)
-    changed = models.BooleanField(default=False)
+    # FIXME: cancelled
+    canceled = models.BooleanField(default=False, verbose_name=_("Cancelled"))
+    changed = models.BooleanField(default=False, verbose_name=_("Changed"))
 
 
     def __unicode__(self):
@@ -85,6 +87,7 @@ class Event(models.Model):
     def get_categories_string(self):
         """Admin list"""
         return ", ".join([c.title for c in self.categories.all()])
+
 
     get_categories_string.short_description = _("Categories")
 
