@@ -6,7 +6,7 @@ from views import EventList
 from views import EventCreate
 
 urlpatterns = patterns('',
-    url(r'^$', EventList.as_view(), name='list')
+    url(r'^$', EventList.as_view(), name='list'),
     #url(r'^search$', 'evenio.views.search_events', name='search'),
     #url(r'^search/([\w-]+)$', 'evenio.views.search_events', name='search'),
     url(r'^events/([\w-]+)$', EventDetail.as_view(), name='show'),

@@ -40,7 +40,7 @@ class EventList(ListView):
     template_name = 'templates/event_list.html'
     context_object_name = 'event_list'
 
-    def get_queryset(self):
+    def get_queryset(self, year=None, month=None, day=None, max_results=0):
 
         if not max_results:
             max_results = request.GET.get('max_results', 0)
