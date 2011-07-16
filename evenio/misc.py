@@ -1,6 +1,8 @@
+from django.db.models import DateField
 from django.db.models import CharField
 from django.utils.encoding import force_unicode
 from django.template.defaultfilters import slugify
+
 
 def slugify_uniquely(value, model, slugfield='slug'):
     """ Generate a unique slug for a given model.
@@ -110,3 +112,13 @@ class AutoSlugField(CharField):
 
     def get_internal_type(self):
         return 'SlugField'
+
+
+# jQuery UI datepicker function
+# from http://strattonbrazil.blogspot.com/2011/03/using-jquery-uis-date-picker-on-all.html
+def make_custom_datefield(f):
+    formfield = f.formfield()
+    if isinstance(f, DateField):
+        formfield.widget.format = '%m/%d/%Y'
+        formfield.widget.attrs.update({'class':'datePicker', 'readonly':'true'})
+    return formfield
