@@ -118,7 +118,7 @@ class EventCreate(CreateView):
     # NYAN NYAN NYAN NYAN NYAN NYAN NYAN NYAN NYAN NYAN NYAN NYAN!!!
 
 
-class UpdateEvent(UpdateView):
+class EventUpdate(UpdateView):
     """ Updates an event
     """
 
