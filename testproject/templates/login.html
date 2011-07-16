@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% load i18n evenio_site_tags %}
+
+{% block content %}
+  <form method="POST" action="{% url login_and_redirect %}">
+    {% login_form %}
+    <button>{% trans "Log ind" %}</button>
+  </form>
+{% endblock %}
