@@ -216,7 +216,7 @@ div#content_container_container
 
 div#content_container
 {
-  padding: 20px;
+  border-top: 4px solid #141414;
 }
 
 div#content_header
@@ -260,11 +260,36 @@ div#content_header h1
   font-size: 20px;
   overflow: hidden;
   white-space: nowrap;
+  float: left;
+  margin-right: 20px;
 }
 
 .event_item
 {
-  margin: 10px 0;
+  margin: 10px 0 10px 0;
   border-bottom: 4px solid #FFF;
-  padding: 10px;
+  padding: 20px;
+  clear: both;
 }
+
+.event_title
+{
+  color: #E5E01A;
+  font-size: 18px;
+}
+
+.event_description
+{
+  font-size: 9pt;
+}
+
+.event_meta
+{
+  padding: 10px 20px;
+  background: #141414;
+  min-height: 100px;;
+  width: 200px;
+  float: right;
+  margin: -30px -20px -20px 20px;
+}
+
