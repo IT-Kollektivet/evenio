@@ -67,6 +67,7 @@ class Event(models.Model):
         return ", ".join([c.title for c in self.categories.all()])
     get_categories_string.short_description = _("Categories")
 
+
 class FlaggedComment(models.Model):
     """
     A (dirty hack?) way to register flagged comments
@@ -75,6 +76,7 @@ class FlaggedComment(models.Model):
 
     def __unicode__(self):
         return self.comment.user_name + ': ' + self.comment.comment
+
 
 def on_comment_was_flagged(sender, comment, request, flag, *args, **kwargs):
     flagged = FlaggedComment(comment=comment)
