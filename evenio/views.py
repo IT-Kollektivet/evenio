@@ -15,6 +15,7 @@ import json
 
 import evenio_settings
 
+import forms
 from models import Event
 from forms import EventForm
 from calendar import monthrange
