@@ -3,6 +3,7 @@ Views for evenio
 """
 from django.views.generic.list_detail import object_list, object_detail
 from django.views.generic.create_update import create_object, update_object
+from django.views.generic import UpdateView
 
 from django.core.serializers import serialize
 from django.http import HttpResponse, Http404
@@ -14,6 +15,7 @@ import json
 import evenio_settings
 
 from models import Event
+from forms import EventForm
 from calendar import monthrange
 from django.core.urlresolvers import reverse
 
@@ -104,11 +106,15 @@ def create_event(request):
     return create_object(request, Event, template_name='evenio/create_event.html')
 
 
-def update_event(request, event_id):
+class UpdateEvent(UpdateView):
     """ Updates an event
     """
 
-    return update_object(request, Event, event_id, template_name='evenio/update_event.html')
+    form_class = EventForm
+    model = Event
+    template_name = 'evenio/event_form.html'
+    context_object_name = 'event'
+
 
 def search_events(request, search_string=None):
     """ Searches among events and produces a list of search results
