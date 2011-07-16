@@ -22,12 +22,12 @@ from django.core.urlresolvers import reverse
 
 
 class EventDetail(DetailView):
-    template_name = 'templates/event_detail.html'
-    context_object_name = 'event_list'
-    paginate_by = 10
+    template_name = 'evenio/event_detail.html'
+    context_object_name = 'event'
 
-    def get_queryset(self, slug):
-        event = Event.objects.all().get(slug=slug)
+    def get_object(self):
+        event = Event.objects.all().get(slug=self.kwargs['slug'])
+        print self.kwargs['slug']
 
         if self.request.is_ajax():
             json = serialize("json", event, use_natural_keys=True)
@@ -37,8 +37,9 @@ class EventDetail(DetailView):
 
 
 class EventList(ListView):
-    template_name = 'templates/event_list.html'
+    template_name = 'evenio/event_list.html'
     context_object_name = 'event_list'
+    paginate_by = 10
 
     def get_queryset(self, year=None, month=None, day=None, max_results=0):
         events = Event.objects.all()
