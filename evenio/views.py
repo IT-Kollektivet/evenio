@@ -13,6 +13,7 @@ import json
 
 import evenio_settings
 
+import forms
 from models import Event
 from calendar import monthrange
 from django.core.urlresolvers import reverse
@@ -101,7 +102,8 @@ def create_event(request):
     """ Creates an event
     """
 
-    return create_object(request, Event, template_name='evenio/create_event.html')
+    return create_object(request, Event, template_name='evenio/create_event.html',
+                         form_class=forms.EventForm)
 
 
 def update_event(request, event_id):
