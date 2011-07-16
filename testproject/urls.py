@@ -3,8 +3,6 @@ from django.conf import settings
 from django.contrib import admin
 from os import path as os_path
 
-from django.views.generic.simple import direct_to_template
-
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -18,4 +16,6 @@ urlpatterns = patterns('',
     (r'^media/(?P<path>.*)$', 'django.views.static.serve',
      {'document_root': os_path.join(settings.SITE_ROOT, 'media'),
       'show_indexes': True}),
+    (r'', include('evenio_site.urls',)),
+
 )
