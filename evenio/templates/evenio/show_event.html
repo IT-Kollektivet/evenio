@@ -5,19 +5,19 @@
 
 <div>
     <h2 id="title">{{ event.title }}</h2>
-    <div id="category">Category: {{ event.get_categories_string }}</div>
-    <div id="starts">Starts: {{ event.starts }}</div>
+    <div id="category">Kategorier: {{ event.get_categories_string }}</div>
+    <div id="starts">Begynder: {{ event.starts }}</div>
 
     {% if event.ends %}
-    <div id="ends">Ends: {{ event.ends }}</div>
+    <div id="ends">Slutter: {{ event.ends }}</div>
     {% endif %}
 
     <div id="venue">Venue: {{ event.venue_name }}</div>
 
-    <div id="price">Price: {{ event.price }}</div>
+    <div id="price">Pris: {{ event.price }}</div>
 
     {% if event.address %}
-    <div id="address">Address: {{ event.address }}</div>
+    <div id="address">Adresse: {{ event.address }}</div>
     {% endif %}
 
     <p id="description">{{ event.description }}</p>
@@ -31,7 +31,7 @@
 
 {% get_comment_count for event as comment_count %}
 
-<p>{{ comment_count }} comments</p>
+<p>{{ comment_count }} kommentar{{ comment_count|pluralize }}</p>
 
 {% render_comment_list for event %}
 

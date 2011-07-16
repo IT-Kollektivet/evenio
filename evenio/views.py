@@ -4,6 +4,7 @@ Views for evenio
 from django.views.generic import UpdateView
 from django.views.generic import ListView
 from django.views.generic import DetailView
+from django.views.generic import CreateView
 
 from django.core.serializers import serialize
 from django.http import HttpResponse, Http404
