@@ -29,7 +29,7 @@ class EventDetail(DetailView):
     def get_queryset(self):
         event = Event.objects.all().get(pk=event_id)
 
-        if request.is_ajax():
+        if self.request.is_ajax():
             json = serialize("json", event, use_natural_keys=True)
             return HttpResponse(json)
         else:
@@ -41,12 +41,7 @@ class EventList(ListView):
     context_object_name = 'event_list'
 
     def get_queryset(self, year=None, month=None, day=None, max_results=0):
-
-        if not max_results:
-            max_results = request.GET.get('max_results', 0)
-
         events = Event.objects.all()
-
         now = datetime.datetime.now()
 
         if not year:
@@ -89,7 +84,7 @@ class EventList(ListView):
         if max_results > 0:
             events = events[:max_results]
 
-        if request.is_ajax():
+        if self.request.is_ajax():
 
             # Put data explicitly in a dictionary instead of using
             # builtin Django functions
