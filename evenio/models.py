@@ -5,6 +5,8 @@ from django.utils.translation import ugettext as _
 from django.contrib.comments.models import Comment
 from django.contrib.comments.signals import comment_was_flagged
 
+from django.core.urlresolvers import reverse
+
 class Category(models.Model):
     """ A category """
     title = models.CharField(max_length=255)
@@ -56,15 +58,23 @@ class Event(models.Model):
     canceled = models.BooleanField(default=False)
     changed = models.BooleanField(default=False)
 
+
     def __unicode__(self):
         return self.title
+
 
     class Meta:
         ordering = ('-starts',)
 
+
+    def get_absolute_url(self):
+        return reverse('show', kwargs={'slug':self.slug})
+
+
     def get_categories_string(self):
         """Admin list"""
         return ", ".join([c.title for c in self.categories.all()])
+
     get_categories_string.short_description = _("Categories")
 
 

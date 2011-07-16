@@ -1,6 +1,10 @@
 {% extends 'evenio/base.html' %}
+{% load i18n %}
 
 {% block content %}
-  {{ form.as_p }}
+    <form method="POST">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">{% trans "Indsend" %}</button>
+    </form>
 
 {% endblock %}
