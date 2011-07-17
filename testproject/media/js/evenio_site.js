@@ -14,9 +14,13 @@ $(function() {
       currentText: 'Nu',
       closeText: 'Luk',
       showButtonPanel: false,
-      showAnim: 'drop',
+      showAnim: 'clip',
       showOtherMonths: true,
       selectOtherMonths: true,
-      showWeek: true
+      showWeek: true,
+
+      beforeShow: function(input, inst){
+        inst.dpDiv.css({marginTop: -input.offsetHeight + 'px', marginLeft: input.offsetWidth + 'px'});
+      }
   });
 });
