@@ -226,7 +226,6 @@ ul.errorlist
 
 label
 {
-  display: block;
   margin: 10px 0 5px 0;
 }
 
@@ -236,16 +235,29 @@ input
   padding: 5px;
 }
 
+div#bg
+{
+  margin-top: -20px;
+  background: url('../img/main_bg.jpg');
+  background-position: center 0;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+}
+
 div#content_container_container
 {
   margin: 30px auto;
   margin-top: 120px;
   overflow: hidden;
+  position: relative;
 }
 
 div#content_container
 {
   border-top: 4px solid #141414;
+  position: relative;
 }
 
 div#content_header
@@ -285,16 +297,17 @@ div.content
 
 .transparency
 {
-  opacity:0.5;
-  filter:alpha(opacity=50);  
-  -moz-opacity:0.5;  
-  background-color:#000000;  
+  opacity:0.8;
+  filter:alpha(opacity=80);  
+  -moz-opacity:0.8;  
+  background:#000000;
+  background-attachment: none;
   width:100%;
   height:100%;
   position:absolute;  
   top:0px;  
   left:0px;  
-  z-index:-1;  
+  z-index:-1;
 }
 
 .event_date
@@ -448,7 +461,7 @@ div.content
   background: transparent;
   font-size: 8pt;
   margin: 0;
-  padding: 2px;
+  padding: 2px 5px;
 }
 #searchform .searchbutton
 {
