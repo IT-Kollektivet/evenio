@@ -69,7 +69,10 @@ class EventList(ListView):
         
         if not kw_day:
             # If no day is specified, we just return until the end of the month.
-            day = now.day
+            if month == now.month:
+                day = now.day
+            else:
+                day = 1
             until_day = monthrange(year, month)[1]
         else:
             day = int(kw_day)
