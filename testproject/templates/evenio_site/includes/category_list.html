@@ -1,0 +1,5 @@
+{% load i18n %}
+{% for category in categories %}
+  <li class="{{ category.slug }}{% ifequal category filter_category %} selected{% endifequal %}"><a href="{% url evenio:list_type category.slug filter_from.year filter_from.month %}">{% trans category.title %}</a></li>
+{% endfor %}
+
