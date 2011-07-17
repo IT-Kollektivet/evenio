@@ -28,17 +28,12 @@ class Category(models.Model):
         return (self.id, self.title)
 
 
-def slugify_event(value):
-    """ Slugify function for Event slugs. """
-    return slugify_uniquely(value, Event)
-
 
 class Event(models.Model):
     """ An event """
 
     title = models.CharField(max_length=255, verbose_name=_("Title"))
-    slug = AutoSlugField(max_length=64, unique=True,
-            populate_from=('title',), slugify_func=slugify_event)
+    slug = models.SlugField(max_length=64, unique=True)
 
     # TODO: These should be lists of times!
     starts = models.DateTimeField(verbose_name=_("Starts"))
@@ -81,12 +76,17 @@ class Event(models.Model):
 
 
     def get_absolute_url(self):
-        return reverse('show', kwargs={'slug':self.slug})
+        return reverse('evenio:show', kwargs={'slug':self.slug})
 
 
     def get_categories_string(self):
         """Admin list"""
         return ", ".join([c.title for c in self.categories.all()])
+
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify_uniquely(self.title, Event)
+        super(Event, self).save(*args, **kwargs)
 
 
     get_categories_string.short_description = _("Categories")
