@@ -4,8 +4,8 @@
 {% block content_header %}
   
   {% if filter_category %}
-    {% url evenio:list_type previous_month.year previous_month.month as prev_url %}
-    {% url evenio:list_type next_month.year next_month.month as next_url %}
+    {% url evenio:list_type filter_category.slug previous_month.year previous_month.month as prev_url %}
+    {% url evenio:list_type filter_category.slug next_month.year next_month.month as next_url %}
   {% else %}
     {% url evenio:list_month previous_month.year previous_month.month as prev_url %}
     {% url evenio:list_month next_month.year next_month.month as next_url %}
