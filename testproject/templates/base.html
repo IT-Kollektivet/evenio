@@ -36,6 +36,14 @@
         {% endif %}
       </ul>
     </div>
+    <ul id="submenu">
+      {% block submenu %}
+      {% endblock %}
+    </ul>
+    <form id="searchform" method="GET">
+      <input type="text" name="query" class="query" />
+      <button class="searchbutton"></button>
+    </form>
     <div class="clearfix"></div>
     
     <div id="login_form">

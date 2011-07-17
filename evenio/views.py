@@ -21,6 +21,8 @@ from models import Event
 from forms import EventForm
 from calendar import monthrange
 from django.core.urlresolvers import reverse
+from django.shortcuts import get_object_or_404
+from evenio.models import Category
 
 
 class EventDetail(DetailView):
@@ -50,6 +52,7 @@ class EventList(ListView):
         kw_year = self.kwargs.get('year', None)
         kw_month = self.kwargs.get('month', None)
         kw_day = self.kwargs.get('day', None)
+        kw_type = self.kwargs.get('type', None)
         max_results = self.kwargs.get('max_results', None)
         
         if not kw_year:
@@ -90,6 +93,11 @@ class EventList(ListView):
                     second=59)
                 )
         
+        if kw_type:
+            self.category = get_object_or_404(Category, slug=kw_type)
+            events = events.filter(categories=self.category)
+        else:
+            self.category = None
         events = events.order_by('starts')
         
         # If max results have been specified
@@ -117,9 +125,10 @@ class EventList(ListView):
         context = super(EventList, self).get_context_data(**kwargs)
         # Add in the publisher
         previous_month = self.filter_from.month - 1 if self.filter_from.month > 1 else 12
-        previous_year = self.filter_from.year if previous_month < 12 else self.filter_from.year + 1
+        previous_year = self.filter_from.year if previous_month < 12 else self.filter_from.year - 1
         next_month = self.filter_from.month + 1 if self.filter_from.month < 12 else 1
         next_year = self.filter_from.year if next_month > 1 else self.filter_from.year + 1
+        context['filter_category'] = self.category
         context['filter_from'] = self.filter_from
         context['previous_month'] = datetime.date(month = previous_month, year = previous_year,
                                                   day = 1)
