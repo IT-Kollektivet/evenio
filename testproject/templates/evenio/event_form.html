@@ -1,14 +1,6 @@
 {% extends 'evenio/base.html' %}
 {% load i18n %}
 
-{% block content_header %}
-  {% if event %}
-    <h1>{{ event.title }}</h1>
-  {% else %}
-    <h1>Ingen begivenhed fundet</h1>
-  {% endif %}
-{% endblock %}
-
 {% block content %}
     <form method="POST">{% csrf_token %}
       <table class="event_form">
@@ -16,14 +8,33 @@
 <tr>
   <th><label>{% trans "Comments" %}</label></th>
   <td>
-    <input type="checkbox" name="comments_before" id="id_comments_before" checked="checked"> {% trans "before event" %}
-    <input type="checkbox" name="comments_after" id="id_comments_after" checked="checked"> {% trans "after event" %}<br/>
+    <input type="checkbox" name="comments_before" id="id_comments_before" checked="checked">
+    <label for="id_comments_before">{% trans "before event" %}</label>
+
+    <input type="checkbox" name="comments_after" id="id_comments_after" checked="checked">
+    <label for="id_comments_after">{% trans "after event" %}</label>
+
     <input type="checkbox" name="comments_anonymous_before" id="id_comments_anonymous_before" checked="checked">
-      {% trans "anonymous before event" %}<br/>
+    <label for="id_comments_anonymous_before">{% trans "anonymous before event" %}</label>
+
     <input type="checkbox" name="comments_anonymous_after" id="id_comments_anonymous_after" checked="checked">
-      {% trans "anonymous after event" %}<br/>
+    <label for="id_comments_anonymous_after">{% trans "anonymous after event" %}</label>
   </td>
 </tr>
+<tr>
+  <th><label>{% trans "Options" %}</label></th>
+  <td>
+    <input type="checkbox" name="rsvp" id="id_rsvp" checked="checked">
+    <label for="id_rsvp">{% trans "RSVP" %}</label>
+
+    <input type="checkbox" name="rsvp_anonymous" id="id_rsvp_anonymous" checked="checked">
+    <label for="id_rsvp_anonymous">{% trans "RSVP (anonymous)" %}</label>
+
+    <input type="checkbox" name="canceled" id="id_canceled" checked="checked">
+    <label for="id_canceled">{% trans "Cancelled" %}
+  </td>
+</tr>
+
       </table>
       <button type="submit">{% trans "Submit" %}</button>
     </form>
