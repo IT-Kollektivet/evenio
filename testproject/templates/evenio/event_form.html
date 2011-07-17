@@ -12,9 +12,20 @@
 {% block content %}
     <form method="POST">{% csrf_token %}
       <table class="event_form">
-        {{ form.as_table }}
+{{ form.as_table }}
+<tr>
+  <th><label>{% trans "Comments" %}</label></th>
+  <td>
+    <input type="checkbox" name="comments_before" id="id_comments_before" checked="checked"> {% trans "before event" %}
+    <input type="checkbox" name="comments_after" id="id_comments_after" checked="checked"> {% trans "after event" %}<br/>
+    <input type="checkbox" name="comments_anonymous_before" id="id_comments_anonymous_before" checked="checked">
+      {% trans "anonymous before event" %}<br/>
+    <input type="checkbox" name="comments_anonymous_after" id="id_comments_anonymous_after" checked="checked">
+      {% trans "anonymous after event" %}<br/>
+  </td>
+</tr>
       </table>
-      <button type="submit">{% trans "Indsend" %}</button>
+      <button type="submit">{% trans "Submit" %}</button>
     </form>
 
 {% endblock %}

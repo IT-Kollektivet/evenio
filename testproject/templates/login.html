@@ -4,12 +4,12 @@
 {% block content %}
   
   {% if form.errors %}
-  <div class="error">{% trans "Brugernavn eller password forkert." %}</div>
+  <div class="error">{% trans "Username and/or password are wrong." %}</div>
   {% endif %}
   
   <form method="POST" action="{% url login_and_redirect %}?next=/">
     {% csrf_token %}
     {{ form.as_p }}
-    <button>{% trans "Log ind" %}</button>
+    <button>{% trans "Log in" %}</button>
   </form>
 {% endblock %}

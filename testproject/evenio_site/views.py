@@ -12,7 +12,7 @@ def login_and_redirect(request):
     return login(request, template_name='login.html',
                  redirect_field_name='next',
                  authentication_form=forms.EvenioAuthenticationForm,
-                 extra_context={'title': _(u"Log ind")})
+                 extra_context={'title': _(u"Log in")})
 
 def logout(request):
     return auth_logout(request, next_page='/')
