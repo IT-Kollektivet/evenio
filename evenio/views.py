@@ -21,6 +21,8 @@ from models import Event
 from forms import EventForm
 from calendar import monthrange
 from django.core.urlresolvers import reverse
+from django.shortcuts import get_object_or_404
+from evenio.models import Category
 
 
 class EventDetail(DetailView):
@@ -42,29 +44,35 @@ class EventList(ListView):
     template_name = 'evenio/event_list.html'
     context_object_name = 'event_list'
     paginate_by = 10
-
-    def get_queryset(self, year=None, month=None, day=None, max_results=0):
+    
+    def get_queryset(self):
         events = Event.objects.all()
         now = datetime.datetime.now()
-
-        if not year:
+        
+        kw_year = self.kwargs.get('year', None)
+        kw_month = self.kwargs.get('month', None)
+        kw_day = self.kwargs.get('day', None)
+        kw_type = self.kwargs.get('type', None)
+        max_results = self.kwargs.get('max_results', None)
+        
+        if not kw_year:
             year = now.year
         else:
-            year = int(year)
+            year = int(kw_year)
 
         try:
-            month = int(month)
+            month = int(kw_month)
         except TypeError:
-            month = evenio_settings.MONTH_SLUGS.get(month, None)
+            month = now.month
         if not month:
             month = now.month
         
-        if not day:
+        if not kw_day:
             # If no day is specified, we just return until the end of the month.
             day = now.day
             until_day = monthrange(year, month)[1]
         else:
-            day = int(day)
+            day = int(kw_day)
             until_day = day
 
         # Out of range handling...
@@ -85,6 +93,11 @@ class EventList(ListView):
                     second=59)
                 )
         
+        if kw_type:
+            self.category = get_object_or_404(Category, slug=kw_type)
+            events = events.filter(categories=self.category)
+        else:
+            self.category = None
         events = events.order_by('starts')
         
         # If max results have been specified
@@ -112,9 +125,10 @@ class EventList(ListView):
         context = super(EventList, self).get_context_data(**kwargs)
         # Add in the publisher
         previous_month = self.filter_from.month - 1 if self.filter_from.month > 1 else 12
-        previous_year = self.filter_from.year if previous_month < 12 else self.filter_from.year + 1
+        previous_year = self.filter_from.year if previous_month < 12 else self.filter_from.year - 1
         next_month = self.filter_from.month + 1 if self.filter_from.month < 12 else 1
         next_year = self.filter_from.year if next_month > 1 else self.filter_from.year + 1
+        context['filter_category'] = self.category
         context['filter_from'] = self.filter_from
         context['previous_month'] = datetime.date(month = previous_month, year = previous_year,
                                                   day = 1)

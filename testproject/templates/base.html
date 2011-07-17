@@ -17,8 +17,8 @@
   <div id="header_container" class="horizontal_container">
     <a href="{% url frontpage %}"><div id="logo"></div></a>
     <ul id="menu">
-      <li class="selected"><a href="">{% trans "Calendar" %}</a></li>
-      <li><a href="">{% trans "Create event" %}</a></li>
+      <li class="selected"><a href="{% url frontpage %}">{% trans "Calendar" %}</a></li>
+      <li><a href="{% url evenio:create %}">{% trans "Create event" %}</a></li>
       <li><a href="">{% trans "Profiles" %}</a></li>
       <li><a href="">{% trans "Who are we" %}</a></li>
       <li><a href="">{% trans "Help" %}</a></li>
@@ -36,6 +36,14 @@
         {% endif %}
       </ul>
     </div>
+    <ul id="submenu">
+      {% block submenu %}
+      {% endblock %}
+    </ul>
+    <form id="searchform" method="GET">
+      <input type="text" name="query" class="query" />
+      <button class="searchbutton"></button>
+    </form>
     <div class="clearfix"></div>
     
     <div id="login_form">
