@@ -128,7 +128,7 @@ class EventCreate(CreateView):
 
     form_class = EventForm
     model = Event
-    template_name = 'evenio/event_form.html'
+    template_name = 'evenio/event_create_form.html'
     context_object_name = 'event'
 
     # NYAN NYAN NYAN NYAN NYAN NYAN NYAN NYAN NYAN NYAN NYAN NYAN!!!
@@ -140,6 +140,6 @@ class EventUpdate(UpdateView):
 
     form_class = EventForm
     model = Event
-    template_name = 'evenio/event_form.html'
+    template_name = 'evenio/event_update_form.html'
     context_object_name = 'event'
 

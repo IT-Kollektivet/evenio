@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-17 00:57+0200\n"
+"POT-Creation-Date: 2011-07-17 03:06+0200\n"
 "PO-Revision-Date: 2011-07-17 00:29+0100\n"
 "Last-Translator: Simon Shine <shreddedglory@gmail.com>\n"
 "Language-Team: evenio@lists.riseup.net\n"
@@ -17,48 +17,104 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: evenio_site/views.py:15 templates/base.html:32 templates/base.html.py:41
+#: evenio_site/views.py:15 templates/base.html:35 templates/base.html.py:44
 #: templates/login.html:13
 msgid "Log in"
 msgstr "Log ind"
 
-#: templates/base.html:17
+#: templates/base.html:20
 msgid "Calendar"
 msgstr "Kalender"
 
-#: templates/base.html:18
+#: templates/base.html:21
 msgid "Create event"
 msgstr "Opret begivenhed"
 
-#: templates/base.html:19
+#: templates/base.html:22
 msgid "Profiles"
 msgstr "Profiler"
 
-#: templates/base.html:20
+#: templates/base.html:23
 msgid "Who are we"
 msgstr "Hvem er vi"
 
-#: templates/base.html:21
+#: templates/base.html:24
 msgid "Help"
 msgstr "Hjælp"
 
-#: templates/base.html:25
+#: templates/base.html:28
 msgid "Logged in as"
 msgstr "Logget ind som"
 
-#: templates/base.html:28
+#: templates/base.html:31
 msgid "Print"
 msgstr "Udskriv"
 
-#: templates/base.html:30
+#: templates/base.html:33
 msgid "Log out"
 msgstr "Log ud"
+
+#: templates/frontpage.html:42
+msgid "Where"
+msgstr "Hvor"
+
+#: templates/frontpage.html:46
+msgid "When"
+msgstr "Hvornår"
+
+#: templates/frontpage.html:57
+msgid "Entré"
+msgstr "Entré"
+
+#: templates/frontpage.html:59
+msgid "DKK"
+msgstr "kr."
+
+#: templates/frontpage.html:61
+msgid "GRATIS"
+msgstr "GRATIS"
 
 #: templates/login.html:7
 msgid "Username and/or password are wrong."
 msgstr "Brugernavn og/eller kodeord er forkert."
 
 #: templates/evenio/event_form.html:17
+msgid "Comments"
+msgstr "Kommentarer"
+
+#: templates/evenio/event_form.html:20
+msgid "before event"
+msgstr "før begivenhed"
+
+#: templates/evenio/event_form.html:23
+msgid "after event"
+msgstr "efter begivenhed"
+
+#: templates/evenio/event_form.html:26
+msgid "anonymous before event"
+msgstr "anonyme før begivenhed"
+
+#: templates/evenio/event_form.html:29
+msgid "anonymous after event"
+msgstr "anonyme efter begivenhed"
+
+#: templates/evenio/event_form.html:33
+msgid "Options"
+msgstr "Indstillinger"
+
+#: templates/evenio/event_form.html:36
+msgid "RSVP"
+msgstr "RSVP"
+
+#: templates/evenio/event_form.html:39
+msgid "RSVP (anonymous)"
+msgstr "RSVP (anonyme)"
+
+#: templates/evenio/event_form.html:42
+msgid "Cancelled"
+msgstr "Annullér"
+
+#: templates/evenio/event_form.html:47
 msgid "Submit"
 msgstr "Indsend"
 
