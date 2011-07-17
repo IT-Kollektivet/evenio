@@ -9,6 +9,7 @@ from django.views.generic import CreateView
 from django.core.serializers import serialize
 from django.http import HttpResponse, Http404
 import datetime
+from datetime import timedelta
 import re
 
 import json
@@ -57,7 +58,7 @@ class EventList(ListView):
             month = evenio_settings.MONTH_SLUGS.get(month, None)
         if not month:
             month = now.month
-
+        
         if not day:
             # If no day is specified, we just return until the end of the month.
             day = now.day
@@ -72,8 +73,10 @@ class EventList(ListView):
         if day > until_day:
             raise Http404()
 
+        self.filter_from = datetime.datetime(year=year, month=month, day=day)
+        
         events = Event.objects.all().filter(
-                starts__gte=datetime.datetime(year=year, month=month, day=day),
+                starts__gte=self.filter_from,
                 starts__lte=datetime.datetime(year=year,
                     month=month,
                     day=until_day,
@@ -81,7 +84,9 @@ class EventList(ListView):
                     minute=59,
                     second=59)
                 )
-
+        
+        events = events.order_by('starts')
+        
         # If max results have been specified
         if max_results > 0:
             events = events[:max_results]
@@ -102,6 +107,20 @@ class EventList(ListView):
         else:
             return events
 
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(EventList, self).get_context_data(**kwargs)
+        # Add in the publisher
+        previous_month = self.filter_from.month - 1 if self.filter_from.month > 1 else 12
+        previous_year = self.filter_from.year if previous_month < 12 else self.filter_from.year + 1
+        next_month = self.filter_from.month + 1 if self.filter_from.month < 12 else 1
+        next_year = self.filter_from.year if next_month > 1 else self.filter_from.year + 1
+        context['filter_from'] = self.filter_from
+        context['previous_month'] = datetime.date(month = previous_month, year = previous_year,
+                                                  day = 1)
+        context['next_month'] = datetime.date(month = next_month, year = next_year,
+                                              day = 1)
+        return context
 
 class EventCreate(CreateView):
     """ Creates an event
