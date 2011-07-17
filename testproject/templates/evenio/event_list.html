@@ -2,7 +2,7 @@
 {% load i18n %}
 
 {% block content_header %}
-  
+
   {% if filter_category %}
     {% url evenio:list_type previous_month.year previous_month.month as prev_url %}
     {% url evenio:list_type next_month.year next_month.month as next_url %}
@@ -10,7 +10,7 @@
     {% url evenio:list_month previous_month.year previous_month.month as prev_url %}
     {% url evenio:list_month next_month.year next_month.month as next_url %}
   {% endif %}
-  
+
   <a href="{{ prev_url }}" class="header_nav_buttons previous_button">{{ previous_month|date:"F Y"|capfirst }}</a>
 
   <a href="{{ next_url }}" class="header_nav_buttons next_button">{{ next_month|date:"F Y"|capfirst }}</a>
@@ -20,7 +20,7 @@
   <div class="pagination">
     {% for page in paginator.page_range %}
       <a href="?page={{ page }}"{% if page_obj.number == page %} class="selected"{% endif %}>{{ page }}</a>
-    {% endfor %}        
+    {% endfor %}
   </div>
   {% endif %}
 
@@ -31,7 +31,7 @@
   <div class="pagination">
     {% for page in paginator.page_range %}
       <a href="?page={{ page }}"{% if page_obj.number == page %} class="selected"{% endif %}>{{ page }}</a>
-    {% endfor %}        
+    {% endfor %}
   </div>
   {% endif %}
 {% endblock %}
@@ -67,7 +67,7 @@
     </div>
     <div class="event_date">{{ event.starts|date:"j/n" }}</div>
     <div class="event_title">
-      {{ event.title }}
+        <a href="{% url evenio:show slug=event.slug %}">{{ event.title }}</a>
       {% if event.canceled %}
       <span class="cancelled">{% trans "Cancelled!" %}</span>
       {% endif %}

@@ -326,11 +326,13 @@ div.content
 }
 
 
-.event_title
+.event_title, .event_title a
 {
   color: #E5E01A;
   font-size: 18px;
+  text-decoration: none;
 }
+
 
 .event_title .cancelled {color: #E5661A;}
 
