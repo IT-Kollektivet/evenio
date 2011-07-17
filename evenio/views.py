@@ -42,29 +42,34 @@ class EventList(ListView):
     template_name = 'evenio/event_list.html'
     context_object_name = 'event_list'
     paginate_by = 10
-
-    def get_queryset(self, year=None, month=None, day=None, max_results=0):
+    
+    def get_queryset(self):
         events = Event.objects.all()
         now = datetime.datetime.now()
-
-        if not year:
+        
+        kw_year = self.kwargs.get('year', None)
+        kw_month = self.kwargs.get('month', None)
+        kw_day = self.kwargs.get('day', None)
+        max_results = self.kwargs.get('max_results', None)
+        
+        if not kw_year:
             year = now.year
         else:
-            year = int(year)
+            year = int(kw_year)
 
         try:
-            month = int(month)
+            month = int(kw_month)
         except TypeError:
-            month = evenio_settings.MONTH_SLUGS.get(month, None)
+            month = now.month
         if not month:
             month = now.month
         
-        if not day:
+        if not kw_day:
             # If no day is specified, we just return until the end of the month.
             day = now.day
             until_day = monthrange(year, month)[1]
         else:
-            day = int(day)
+            day = int(kw_day)
             until_day = day
 
         # Out of range handling...

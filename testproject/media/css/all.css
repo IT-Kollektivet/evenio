@@ -20,8 +20,13 @@ body
 #header
 {
   border-bottom: 40px solid #E5E01A;
-  position: relative;
+  position: fixed;
+  top: 0;
   height: 60px;
+  width: 100%;
+  background-color: #000;
+  background-image: url('../img/bg_grid.png');
+  z-index: 999;
 }
 
 #header_container
@@ -212,6 +217,7 @@ input
 div#content_container_container
 {
   margin: 30px auto;
+  margin-top: 120px;
   overflow: hidden;
 }
 
@@ -370,12 +376,7 @@ div#content_header h1
   padding: 0 5px 0 10px;
   color: #000;
   display: inline-block;
-}
-
-.header_nav_buttons a
-{
   text-decoration: none;
-  color: #000;
 }
 
 .previous_button
