@@ -12,7 +12,7 @@ urlpatterns = patterns('',
 
     # Comments
     (r'^comments/', include('django.contrib.comments.urls')),
-    
+
     (r'^media/(?P<path>.*)$', 'django.views.static.serve',
      {'document_root': os_path.join(settings.SITE_ROOT, 'media'),
       'show_indexes': True}),

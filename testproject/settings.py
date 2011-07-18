@@ -80,7 +80,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.request",
     "django.core.context_processors.static",
     "django.contrib.messages.context_processors.messages",
-    
 )
 
 MIDDLEWARE_CLASSES = (
@@ -114,7 +113,5 @@ INSTALLED_APPS = (
      # Important to be after evenio for comment templates to work!
     'django.contrib.comments',)
 
-# Telling where to find userprofiles. 
-# Should be appname.modelname, NOT appname.models.modelname
-AUTH_PROFILE_MODULE = "evenio_cal.UserProfile"
+LOGIN_URL = '/login-redirect/'
 

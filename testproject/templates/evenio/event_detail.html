@@ -23,9 +23,11 @@
     <p id="description">{{ event.description }}</p>
 </div>
 
-<div>
-  <a href="{% url evenio:update slug=event.slug %}">Opdatér begivenhed</a>
-</div>
+{% if request.user.is_authenticated %}
+    <div>
+      <a href="{% url evenio:update slug=event.slug %}">Opdatér begivenhed</a>
+    </div>
+{% endif %}
 
 <hr />
 

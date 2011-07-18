@@ -6,6 +6,7 @@ from django.views.generic import ListView
 from django.views.generic import DetailView
 from django.views.generic import CreateView
 
+
 from django.core.serializers import serialize
 from django.http import HttpResponse, Http404
 import datetime
@@ -44,17 +45,17 @@ class EventList(ListView):
     template_name = 'evenio/event_list.html'
     context_object_name = 'event_list'
     paginate_by = 10
-    
+
     def get_queryset(self):
         events = Event.objects.all()
         now = datetime.datetime.now()
-        
+
         kw_year = self.kwargs.get('year', None)
         kw_month = self.kwargs.get('month', None)
         kw_day = self.kwargs.get('day', None)
         kw_type = self.kwargs.get('type', None)
         max_results = self.kwargs.get('max_results', None)
-        
+
         if not kw_year:
             year = now.year
         else:
@@ -66,7 +67,7 @@ class EventList(ListView):
             month = now.month
         if not month:
             month = now.month
-        
+
         if not kw_day:
             # If no day is specified, we just return until the end of the month.
             if month == now.month:
@@ -85,7 +86,7 @@ class EventList(ListView):
             raise Http404()
 
         self.filter_from = datetime.datetime(year=year, month=month, day=day)
-        
+
         events = Event.objects.all().filter(
                 starts__gte=self.filter_from,
                 starts__lte=datetime.datetime(year=year,
@@ -95,14 +96,14 @@ class EventList(ListView):
                     minute=59,
                     second=59)
                 )
-        
+
         if kw_type:
             self.category = get_object_or_404(Category, slug=kw_type)
             events = events.filter(categories=self.category)
         else:
             self.category = None
         events = events.order_by('starts')
-        
+
         # If max results have been specified
         if max_results > 0:
             events = events[:max_results]
@@ -139,6 +140,7 @@ class EventList(ListView):
                                               day = 1)
         return context
 
+
 class EventCreate(CreateView):
     """ Creates an event
     """
@@ -149,7 +151,6 @@ class EventCreate(CreateView):
     context_object_name = 'event'
 
     # NYAN NYAN NYAN NYAN NYAN NYAN NYAN NYAN NYAN NYAN NYAN NYAN!!!
-
 
 class EventUpdate(UpdateView):
     """ Updates an event
