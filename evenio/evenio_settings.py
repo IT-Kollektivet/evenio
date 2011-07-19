@@ -42,10 +42,9 @@ DEFAULT_MONTH_SLUGS = {
 
     'november': 11,
     'nov': 11,
-    
+
     'december': 12,
     'dec': 12,
 }
 
 MONTH_SLUGS = getattr(settings, "EVENIO_MONTH_SLUGS", DEFAULT_MONTH_SLUGS)
-
