@@ -5,7 +5,22 @@
 <!-- form css - goes into all.css eventually  -->
 <style type="text/css">
     .form-line {
-        display: list-item;    
+        display: list-item;
+    }
+    .form-line input {
+        background: none repeat scroll 0 0 #E5E01A;
+        border-color: #E5E01A;
+        border-radius: 4px 4px 4px 4px;
+        border-style: solid;
+        color: #000;
+        padding: 5px;    
+    }
+    ul.errorlist {
+        border-radius: 4px 4px 4px 4px;
+    }
+    
+    input[type="checkbox"] ~ label {
+        clear: right;
     }
 </style>
     <form method="POST">{% csrf_token %}
@@ -61,7 +76,7 @@
             {{ form.categories.errors }}
         </div>
         
-        <div class="form-line">
+        <div class="form-line comments">
             <label>{% trans "Comments" %}</label>
             
             {{ form.comments_before }}
