@@ -32,35 +32,70 @@ class Category(models.Model):
 class Event(models.Model):
     """ An event """
 
-    title = models.CharField(max_length=255, verbose_name=_("Title"))
-    slug = models.SlugField(max_length=64, unique=True)
+    title = models.CharField(max_length=255,
+        verbose_name=_("Title"),
+        help_text=_("The title of the event"))
+    slug = models.SlugField(max_length=64, unique=True,
+        verbose_name=_("Slug"),
+        help_text=_("A unique identifier based on the title"))
 
     # TODO: These should be lists of times!
-    starts = models.DateTimeField(verbose_name=_("Starts"))
-    ends = models.DateTimeField(null=True, blank=True, verbose_name=_("Ends"))
+    starts = models.DateTimeField(null=False, blank=False,
+        verbose_name=_("Starts"),
+        help_text=_("When the event begins"))
+    ends = models.DateTimeField(null=True, blank=True,
+        verbose_name=_("Ends"),
+        help_text=_("When the event ends"))
 
-    venue_name = models.CharField(max_length=255, verbose_name=_("Venue"))
-    address = models.CharField(max_length=255, null=True, blank=True, verbose_name=_("Address"))
+    venue_name = models.CharField(max_length=255,
+        verbose_name=_("Venue"),
+        help_text=_("The name of the place where the event is held"))
 
-    categories = models.ManyToManyField(Category, verbose_name=_("Category"))
+    address = models.CharField(max_length=255, null=True, blank=True,
+        verbose_name=_("Address"),
+        help_text=_("The address for the place where the event is held"))
 
-    description = models.TextField(blank=True, verbose_name=_("Description"))
+    categories = models.ManyToManyField(Category,
+        verbose_name=_("Categories"),
+        help_text=_("The type of event"))
+
+    description = models.TextField(blank=True,
+        verbose_name=_("Description")) # TODO: help_text=_("")
 
     created = models.DateTimeField(auto_now_add=True, verbose_name=_("Created"))
     changed = models.DateTimeField(auto_now=True, verbose_name=_("Changed"))
 
-    owner = models.ForeignKey(User, null=True, blank=True, verbose_name=_("Owner"))
-    owner_anonymous = models.CharField(max_length=255, null=True, blank=True, verbose_name=_("Owner (anonymous)"))
+    owner = models.ForeignKey(User, null=True, blank=True,
+        verbose_name=_("Owner"))
+    owner_anonymous = models.CharField(max_length=255, null=True, blank=True,
+        verbose_name=_("Owner (anonymous)"))
 
-    price = models.IntegerField(null=True, blank=True, verbose_name=_("Price"))
+    price = models.IntegerField(null=True, blank=True,
+        verbose_name=_("Price"),
+        help_text=_("The cost for participating. Be kind to note in the " +
+                    "description of the event if people have to sign up, " +
+                    "and how this is done, before they can participate."))
 
     # Allow:
-    rsvp = models.BooleanField(default=True, verbose_name=_("RSVP"))
-    rsvp_anonymous = models.BooleanField(default=True, verbose_name=_("RSVP (anonymous)"))
-    comments_before = models.BooleanField(default=True, verbose_name=_("Comments before event"))
-    comments_after = models.BooleanField(default=True, verbose_name=_("Comments after event"))
-    comments_anonymous_before = models.BooleanField(default=True, verbose_name=_("Comments (anonymous) before event"))
-    comments_anonymous_after = models.BooleanField(default=True, verbose_name=_("Comments (anonymous) after event"))
+    rsvp = models.BooleanField(default=True, verbose_name=_("RSVP"),
+        help_text=_("Do participants have to say whether they will attend " +
+                    "to be allowed to attend?"))
+    rsvp_anonymous = models.BooleanField(default=True,
+        verbose_name=_("RSVP (anonymous)"),
+        help_text=_("Can people say that they attend even when they are not " +
+                    "logged in?"))
+    comments_before = models.BooleanField(default=True,
+        verbose_name=_("Comments before event"),
+        help_text=_("Can people post comments before the event?"))
+    comments_after = models.BooleanField(default=True,
+        verbose_name=_("Comments after event"),
+        help_text=_("Can people post comments after the event?"))
+    comments_anonymous_before = models.BooleanField(default=True,
+        verbose_name=_("Comments (anonymous) before event"),
+        help_text=_("Can people post comments anonymously before the event?"))
+    comments_anonymous_after = models.BooleanField(default=True,
+        verbose_name=_("Comments (anonymous) after event"),
+        help_text=_("Can people post comments anonymously after the event?"))
 
     # FIXME: cancelled
     canceled = models.BooleanField(default=False, verbose_name=_("Cancelled"))

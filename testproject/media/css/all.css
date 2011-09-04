@@ -198,7 +198,10 @@ div#meta_menu li.selected
 .clearfix {clear: both;}
 
 
-button {
+button,
+.event_form .formy input,
+.event_form .formy textarea,
+.event_form .formy select {
   border-style: solid;
   border-color: #E5E01A;
   -moz-border-radius: 4px;
@@ -208,6 +211,12 @@ button {
   padding: 5px;
 }
 
+.event_form .formy input {
+  width: 90%;
+}
+
+.event_form th, .event_form td {
+}
 
 div.error
 {
@@ -221,7 +230,12 @@ ul.errorlist
   background: #E5661A;
   color: #FFF;
   padding: 10px;
-  margin: 10px 0;
+  margin: 5px 0;
+}
+
+.errorstar
+{
+  color: #E5661A;
 }
 
 label

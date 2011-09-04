@@ -4,33 +4,81 @@
 {% block content %}
     <form method="POST">{% csrf_token %}
       <table class="event_form">
-{{ form.as_table }}
+<tr><td colspan="2">{{ form.non_field_errors }}</td></tr>
+
+<tr class="formy">
+  <th><label for="id_title">{% trans "Title" %}</label> <span class="errorstar">*</span></th>
+  <td>{{ form.title }}</td>
+  <td>{{ form.title.errors }}</td>
+</tr>
+<tr class="formy">
+  <th><label for="id_starts">{% trans "Starts" %}</label> <span class="errorstar">*</span></th>
+  <td>{{ form.starts }}</td>
+  <td>{{ form.starts.errors }}</td>
+</tr>
+<tr class="formy">
+  <th><label for="id_ends">{% trans "Ends" %}</label></th>
+  <td>{{ form.ends }}</td>
+  <td>{{ form.ends.errors }}</td>
+</tr>
+<tr class="formy">
+  <th><label for="id_venue_name">{% trans "Venue" %}</label> <span class="errorstar">*</span></th>
+  <td>{{ form.venue_name }}</td>
+  <td>{{ form.venue_name.errors }}</td>
+</tr>
+<tr class="formy">
+  <th><label for="id_address">{% trans "Address" %}</label> <span class="errorstar">*</span></th>
+  <td>{{ form.address }}</td>
+  <td>{{ form.address.errors }}</td>
+</tr>
+<tr class="formy">
+  <th><label for="id_description">{% trans "Description" %}</label> <span class="errorstar"></th>
+  <td>{{ form.description }}</td>
+  <td>{{ form.description.errors }}</td>
+</tr>
+<tr class="formy">
+  <th><label for="id_categories">{% trans "Categories" %}</label> <span class="errorstar">*</span></th>
+  <td>{{ form.categories }}</td>
+  <td>{{ form.categories.errors }}</td>
+</tr>
 <tr>
   <th><label>{% trans "Comments" %}</label></th>
   <td>
-    <input type="checkbox" name="comments_before" id="id_comments_before" checked="checked">
+    {{ form.comments_before }}
     <label for="id_comments_before">{% trans "before event" %}</label>
-
-    <input type="checkbox" name="comments_after" id="id_comments_after" checked="checked">
+  </td>
+</tr>
+<tr>
+  <td></td>
+  <td>
+    {{ form.comments_after }}
     <label for="id_comments_after">{% trans "after event" %}</label>
-
-    <input type="checkbox" name="comments_anonymous_before" id="id_comments_anonymous_before" checked="checked">
+  </td>
+</tr>
+<tr>
+  <td></td>
+  <td>
+    {{ form.comments_anonymous_before }}
     <label for="id_comments_anonymous_before">{% trans "anonymous before event" %}</label>
-
-    <input type="checkbox" name="comments_anonymous_after" id="id_comments_anonymous_after" checked="checked">
+  </td>
+</tr>
+<tr>
+  <td></td>
+  <td>
+    {{ form.comments_anonymous_after }}
     <label for="id_comments_anonymous_after">{% trans "anonymous after event" %}</label>
   </td>
 </tr>
 <tr>
   <th><label>{% trans "Options" %}</label></th>
   <td>
-    <input type="checkbox" name="rsvp" id="id_rsvp" checked="checked">
+    {{ form.rsvp }}
     <label for="id_rsvp">{% trans "RSVP" %}</label>
 
-    <input type="checkbox" name="rsvp_anonymous" id="id_rsvp_anonymous" checked="checked">
+    {{ form.rsvp_anonymous }}
     <label for="id_rsvp_anonymous">{% trans "RSVP (anonymous)" %}</label>
 
-    <input type="checkbox" name="canceled" id="id_canceled" checked="checked">
+    {{ form.canceled }}
     <label for="id_canceled">{% trans "Cancelled" %}
   </td>
 </tr>
