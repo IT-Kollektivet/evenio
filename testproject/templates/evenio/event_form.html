@@ -2,89 +2,95 @@
 {% load i18n %}
 
 {% block content %}
+<!-- form css - goes into all.css eventually  -->
+<style type="text/css">
+    .form-line {
+        display: list-item;    
+    }
+</style>
     <form method="POST">{% csrf_token %}
-      <table class="event_form">
-<tr><td colspan="2">{{ form.non_field_errors }}</td></tr>
-
-<tr class="formy">
-  <th><label for="id_title">{% trans "Title" %}</label> <span class="errorstar">*</span></th>
-  <td>{{ form.title }}</td>
-  <td>{{ form.title.errors }}</td>
-</tr>
-<tr class="formy">
-  <th><label for="id_starts">{% trans "Starts" %}</label> <span class="errorstar">*</span></th>
-  <td>{{ form.starts }}</td>
-  <td>{{ form.starts.errors }}</td>
-</tr>
-<tr class="formy">
-  <th><label for="id_ends">{% trans "Ends" %}</label></th>
-  <td>{{ form.ends }}</td>
-  <td>{{ form.ends.errors }}</td>
-</tr>
-<tr class="formy">
-  <th><label for="id_venue_name">{% trans "Venue" %}</label> <span class="errorstar">*</span></th>
-  <td>{{ form.venue_name }}</td>
-  <td>{{ form.venue_name.errors }}</td>
-</tr>
-<tr class="formy">
-  <th><label for="id_address">{% trans "Address" %}</label> <span class="errorstar">*</span></th>
-  <td>{{ form.address }}</td>
-  <td>{{ form.address.errors }}</td>
-</tr>
-<tr class="formy">
-  <th><label for="id_description">{% trans "Description" %}</label> <span class="errorstar"></th>
-  <td>{{ form.description }}</td>
-  <td>{{ form.description.errors }}</td>
-</tr>
-<tr class="formy">
-  <th><label for="id_categories">{% trans "Categories" %}</label> <span class="errorstar">*</span></th>
-  <td>{{ form.categories }}</td>
-  <td>{{ form.categories.errors }}</td>
-</tr>
-<tr>
-  <th><label>{% trans "Comments" %}</label></th>
-  <td>
-    {{ form.comments_before }}
-    <label for="id_comments_before">{% trans "before event" %}</label>
-  </td>
-</tr>
-<tr>
-  <td></td>
-  <td>
-    {{ form.comments_after }}
-    <label for="id_comments_after">{% trans "after event" %}</label>
-  </td>
-</tr>
-<tr>
-  <td></td>
-  <td>
-    {{ form.comments_anonymous_before }}
-    <label for="id_comments_anonymous_before">{% trans "anonymous before event" %}</label>
-  </td>
-</tr>
-<tr>
-  <td></td>
-  <td>
-    {{ form.comments_anonymous_after }}
-    <label for="id_comments_anonymous_after">{% trans "anonymous after event" %}</label>
-  </td>
-</tr>
-<tr>
-  <th><label>{% trans "Options" %}</label></th>
-  <td>
-    {{ form.rsvp }}
-    <label for="id_rsvp">{% trans "RSVP" %}</label>
-
-    {{ form.rsvp_anonymous }}
-    <label for="id_rsvp_anonymous">{% trans "RSVP (anonymous)" %}</label>
-
-    {{ form.canceled }}
-    <label for="id_canceled">{% trans "Cancelled" %}
-  </td>
-</tr>
-
-      </table>
-      <button type="submit">{% trans "Submit" %}</button>
+        
+        <p>{{ form.non_field_errors }}</p>
+    
+        <div class="form-line">
+            <label for="id_title">{% trans "Title" %}</label>
+            <span class="errorstar">*</span>
+            {{ form.title }}
+            {{ form.title.errors }}
+        </div>
+        
+        <div class="form-line">
+            <label for="id_starts">{% trans "Starts" %}</label>
+            <span class="errorstar">*</span>
+            {{ form.starts }}
+            {{ form.starts.errors }}
+        </div>
+        
+        <div class="form-line">
+            <label for="id_ends">{% trans "Ends" %}</label>
+            <span class="errorstar">*</span>
+            {{ form.ends }}
+            {{ form.ends.errors }}
+        </div>
+        
+        <div class="form-line">
+            <label for="id_venue_name">{% trans "Venue" %}</label>
+            <span class="errorstar">*</span>
+            {{ form.venue_name }}
+            {{ form.venue_name.errors }}
+        </div>
+        
+        <div class="form-line">
+            <label for="id_address">{% trans "Address" %}</label>
+            <span class="errorstar">*</span>
+            {{ form.address }}
+            {{ form.address.errors }}
+        </div>
+        
+         <div class="form-line">
+            <label for="id_description">{% trans "Description" %}</label>
+            <span class="errorstar">*</span>
+            {{ form.description }}
+            {{ form.description.errors }}
+        </div>
+        
+        <div class="form-line">
+            <label for="id_categories">{% trans "Categories" %}</label>
+            <span class="errorstar">*</span>
+            {{ form.categories }}
+            {{ form.categories.errors }}
+        </div>
+        
+        <div class="form-line">
+            <label>{% trans "Comments" %}</label>
+            
+            {{ form.comments_before }}
+            <label for="id_comments_before">{% trans "before event" %}</label>
+             
+            {{ form.comments_after }}
+            <label for="id_comments_after">{% trans "after event" %}</label>
+            
+            {{ form.comments_anonymous_before }}
+            <label for="id_comments_anonymous_before">{% trans "anonymous before event" %}</label>
+    
+            {{ form.comments_anonymous_after }}
+            <label for="id_comments_anonymous_after">{% trans "anonymous after event" %}</label>
+        </div>
+        
+        <div class="form-line">
+            <label>{% trans "Options" %}</label>
+            
+            {{ form.rsvp }}
+            <label for="id_rsvp">{% trans "RSVP" %}</label>
+        
+            {{ form.rsvp_anonymous }}
+            <label for="id_rsvp_anonymous">{% trans "RSVP (anonymous)" %}</label>
+        
+            {{ form.canceled }}
+            <label for="id_canceled">{% trans "Cancelled" %}
+        </div>
+        
+        <button type="submit">{% trans "Submit" %}</button>
     </form>
 
 {% endblock %}
