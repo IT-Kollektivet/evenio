@@ -7,20 +7,31 @@
     .form-line {
         display: list-item;
     }
-    .form-line input {
+    
+    .form-line label {
+        display: inline-block;
+        min-width: 100px;
+        width: 20%;
+    }
+    
+    .form-line input, .form-line textarea, .form-line select {
         background: none repeat scroll 0 0 #E5E01A;
         border-color: #E5E01A;
         border-radius: 4px 4px 4px 4px;
         border-style: solid;
         color: #000;
-        padding: 5px;    
+        padding: 5px;
+        width: 60%;
     }
+    
     ul.errorlist {
         border-radius: 4px 4px 4px 4px;
     }
     
+    
+    
     input[type="checkbox"] ~ label {
-        clear: right;
+        
     }
 </style>
     <form method="POST">{% csrf_token %}
@@ -43,7 +54,6 @@
         
         <div class="form-line">
             <label for="id_ends">{% trans "Ends" %}</label>
-            <span class="errorstar">*</span>
             {{ form.ends }}
             {{ form.ends.errors }}
         </div>
@@ -57,14 +67,12 @@
         
         <div class="form-line">
             <label for="id_address">{% trans "Address" %}</label>
-            <span class="errorstar">*</span>
             {{ form.address }}
             {{ form.address.errors }}
         </div>
         
          <div class="form-line">
             <label for="id_description">{% trans "Description" %}</label>
-            <span class="errorstar">*</span>
             {{ form.description }}
             {{ form.description.errors }}
         </div>
@@ -81,13 +89,19 @@
             
             {{ form.comments_before }}
             <label for="id_comments_before">{% trans "before event" %}</label>
+            
+            <br/>
              
             {{ form.comments_after }}
             <label for="id_comments_after">{% trans "after event" %}</label>
             
+            <br/>
+            
             {{ form.comments_anonymous_before }}
             <label for="id_comments_anonymous_before">{% trans "anonymous before event" %}</label>
-    
+            
+            <br/>
+            
             {{ form.comments_anonymous_after }}
             <label for="id_comments_anonymous_after">{% trans "anonymous after event" %}</label>
         </div>
@@ -97,10 +111,14 @@
             
             {{ form.rsvp }}
             <label for="id_rsvp">{% trans "RSVP" %}</label>
-        
+            
+            <br/>
+            
             {{ form.rsvp_anonymous }}
             <label for="id_rsvp_anonymous">{% trans "RSVP (anonymous)" %}</label>
-        
+            
+            <br/>
+            
             {{ form.canceled }}
             <label for="id_canceled">{% trans "Cancelled" %}
         </div>
