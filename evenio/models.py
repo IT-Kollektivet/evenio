@@ -35,7 +35,8 @@ class Event(models.Model):
     title = models.CharField(max_length=255,
         verbose_name=_("Title"),
         help_text=_("The title of the event"))
-    slug = models.SlugField(max_length=64, unique=True,
+
+    slug = models.SlugField(max_length=64, blank=True, unique=True,
         verbose_name=_("Slug"),
         help_text=_("A unique identifier based on the title"))
 
@@ -43,6 +44,7 @@ class Event(models.Model):
     starts = models.DateTimeField(null=False, blank=False,
         verbose_name=_("Starts"),
         help_text=_("When the event begins"))
+
     ends = models.DateTimeField(null=True, blank=True,
         verbose_name=_("Ends"),
         help_text=_("When the event ends"))
@@ -80,25 +82,31 @@ class Event(models.Model):
     rsvp = models.BooleanField(default=True, verbose_name=_("RSVP"),
         help_text=_("Do participants have to say whether they will attend " +
                     "to be allowed to attend?"))
+
     rsvp_anonymous = models.BooleanField(default=True,
         verbose_name=_("RSVP (anonymously)"),
         help_text=_("Can people say that they attend even when they are not " +
                     "logged in?"))
+
     comments_before = models.BooleanField(default=True,
         verbose_name=_("Comments before event"),
         help_text=_("Can people post comments before the event?"))
+
     comments_after = models.BooleanField(default=True,
         verbose_name=_("Comments after event"),
         help_text=_("Can people post comments after the event?"))
+
     comments_anonymous_before = models.BooleanField(default=True,
         verbose_name=_("Comments (anonymous) before event"),
         help_text=_("Can people post comments anonymously before the event?"))
+
     comments_anonymous_after = models.BooleanField(default=True,
         verbose_name=_("Comments (anonymous) after event"),
         help_text=_("Can people post comments anonymously after the event?"))
 
     # FIXME: cancelled
     canceled = models.BooleanField(default=False, verbose_name=_("Cancelled"))
+
     changed = models.BooleanField(default=False, verbose_name=_("Changed"))
 
 
@@ -111,6 +119,7 @@ class Event(models.Model):
 
 
     def get_absolute_url(self):
+        print "LOL i model!"
         return reverse('evenio:show', kwargs={'slug':self.slug})
 
 
