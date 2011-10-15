@@ -10,6 +10,7 @@
     
     .form-line label {
         display: inline-block;
+        vertical-align: top;
         min-width: 100px;
         width: 10%;
     }
@@ -36,21 +37,23 @@
     input[type="checkbox"] ~ label {
         
     }
+
+    label.mandatory span {
+        color: #E5661A;
+    }
 </style>
     <form method="POST">{% csrf_token %}
         
         <p>{{ form.non_field_errors }}</p>
     
         <div class="form-line">
-            <label for="id_title">{% trans "Title" %}</label>
-            <span class="errorstar">*</span>
+            <label for="id_title" class="mandatory">{% trans "Title" %} <span>*</span></label>
             {{ form.title }}
             {{ form.title.errors }}
         </div>
         
         <div class="form-line">
-            <label for="id_starts">{% trans "Starts" %}</label>
-            <span class="errorstar">*</span>
+            <label for="id_starts" class="mandatory">{% trans "Starts" %} <span>*</span></label>
             {{ form.starts }}
             {{ form.starts.errors }}
         </div>
@@ -62,8 +65,7 @@
         </div>
         
         <div class="form-line">
-            <label for="id_venue_name">{% trans "Venue" %}</label>
-            <span class="errorstar">*</span>
+            <label for="id_venue_name" class="mandatory">{% trans "Venue" %} <span>*</span></label>
             {{ form.venue_name }}
             {{ form.venue_name.errors }}
         </div>
@@ -81,32 +83,31 @@
         </div>
         
         <div class="form-line">
-            <label for="id_categories">{% trans "Categories" %}</label>
-            <span class="errorstar">*</span>
+            <label for="id_categories" class="mandatory">{% trans "Categories" %} <span>*</span></label>
             {{ form.categories }}
             {{ form.categories.errors }}
         </div>
+
+	<div class="form-line">
+	    <label for="id_price">{% trans "Price" %}</label>
+	    {{ form.price }}
+	    {{ form.price.errors }}
+	</div>
         
         <div class="form-line comments">
-            <label>{% trans "Comments" %}</label>
+            <label>{% trans "Allow comments" %}</label>
             
             {{ form.comments_before }}
-            <label for="id_comments_before">{% trans "before event" %}</label>
+            <label for="id_comments_before">{% trans "before the event" %}</label>
             
-            <br/>
-             
             {{ form.comments_after }}
-            <label for="id_comments_after">{% trans "after event" %}</label>
-            
-            <br/>
+            <label for="id_comments_after">{% trans "after the event" %}</label>
             
             {{ form.comments_anonymous_before }}
-            <label for="id_comments_anonymous_before">{% trans "anonymous before event" %}</label>
-            
-            <br/>
+            <label for="id_comments_anonymous_before">{% trans "anonymously before the event" %}</label>
             
             {{ form.comments_anonymous_after }}
-            <label for="id_comments_anonymous_after">{% trans "anonymous after event" %}</label>
+            <label for="id_comments_anonymous_after">{% trans "anonymously after the event" %}</label>
         </div>
         
         <div class="form-line">
@@ -115,15 +116,11 @@
             {{ form.rsvp }}
             <label for="id_rsvp">{% trans "RSVP" %}</label>
             
-            <br/>
-            
             {{ form.rsvp_anonymous }}
-            <label for="id_rsvp_anonymous">{% trans "RSVP (anonymous)" %}</label>
-            
-            <br/>
+            <label for="id_rsvp_anonymous">{% trans "RSVP (anonymously)" %}</label>
             
             {{ form.canceled }}
-            <label for="id_canceled">{% trans "Cancelled" %}
+            <label for="id_canceled">{% trans "Cancelled event" %}
         </div>
         
         <button type="submit">{% trans "Submit" %}</button>

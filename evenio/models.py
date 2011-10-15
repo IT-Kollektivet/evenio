@@ -81,7 +81,7 @@ class Event(models.Model):
         help_text=_("Do participants have to say whether they will attend " +
                     "to be allowed to attend?"))
     rsvp_anonymous = models.BooleanField(default=True,
-        verbose_name=_("RSVP (anonymous)"),
+        verbose_name=_("RSVP (anonymously)"),
         help_text=_("Can people say that they attend even when they are not " +
                     "logged in?"))
     comments_before = models.BooleanField(default=True,

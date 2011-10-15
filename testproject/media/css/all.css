@@ -11,9 +11,8 @@
 
 body
 {
-  background-color: #000;
-  background-image: url('../img/bg_grid.png');
-  color: #FFF;
+  background-color: #fff;
+  color: #000;
   font-family: MuseoSlab500, sans;
 }
 
@@ -252,8 +251,6 @@ input
 div#bg
 {
   margin-top: -20px;
-  background: url('../img/main_bg.jpg');
-  background-position: center 0;
   position: fixed;
   width: 100%;
   height: 100%;
@@ -270,13 +267,13 @@ div#content_container_container
 
 div#content_container
 {
-  border-top: 4px solid #141414;
+  border-top: 4px solid #ccc;
   position: relative;
 }
 
 div#content_header
 {
-  background: #000;
+  background: #eee;
   padding: 20px;
   text-align: center;
   position: relative;
@@ -284,13 +281,13 @@ div#content_header
 
 div#content_footer
 {
-  background: #000;
+  background: #eee;
   padding: 20px;
   text-align: center;
   margin: 0;
 }
 
-div#content_footer .pagination
+div#footer .pagination
 {
   margin: 0;
 }
@@ -298,7 +295,6 @@ div#content_footer .pagination
 div#content_header h1
 {
   display: inline-block;
-  background: #E5E01A;
   color: #000;
   padding: 5px;
   font-size: 36px;
@@ -314,7 +310,7 @@ div.content
   opacity:0.8;
   filter:alpha(opacity=80);  
   -moz-opacity:0.8;  
-  background:#000000;
+  background: #ccc;
   background-attachment: none;
   width:100%;
   height:100%;
@@ -371,7 +367,7 @@ div.content
 .event_meta
 {
   padding: 20px 20px;
-  background: #141414;
+  background: #ccc;
   min-height: 80px;;
   width: 200px;
   float: right;
