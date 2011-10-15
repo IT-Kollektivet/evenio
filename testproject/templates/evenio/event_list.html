@@ -66,6 +66,9 @@
         {% trans "GRATIS" %}
         {% endif %}
       </div>
+      <div class="event_property">
+	<a href="{% url evenio:update slug=event.slug %}">{% trans "Update event" %}</a>
+      </div>
     </div>
     <div class="event_date">{{ event.starts|date:"j/n" }}</div>
     <div class="event_title">
