@@ -14,7 +14,7 @@ from misc import AutoSlugField
 class Category(models.Model):
     """ A category """
     title = models.CharField(max_length=255)
-    slug = models.SlugField(max_length=64)
+    slug = models.SlugField(max_length=64, blank=True, editable=False)
 
     def __unicode__(self):
         return self.title
@@ -36,7 +36,7 @@ class Event(models.Model):
         verbose_name=_("Title"),
         help_text=_("The title of the event"))
 
-    slug = models.SlugField(max_length=64, blank=True, unique=True,
+    slug = models.SlugField(max_length=64, blank=True, unique=True, editable=False,
         verbose_name=_("Slug"),
         help_text=_("A unique identifier based on the title"))
 
@@ -119,7 +119,6 @@ class Event(models.Model):
 
 
     def get_absolute_url(self):
-        print "LOL i model!"
         return reverse('evenio:show', kwargs={'slug':self.slug})
 
 
@@ -129,7 +128,10 @@ class Event(models.Model):
 
 
     def save(self, *args, **kwargs):
-        self.slug = slugify_uniquely(self.title, Event)
+
+        if not self.id:
+            self.slug = slugify_uniquely(self.title, Event)
+
         super(Event, self).save(*args, **kwargs)
 
 
