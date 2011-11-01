@@ -1,17 +1,17 @@
 # Evenio
 
 1. Setup
-  1. Settings explained
-    1. What?
-    1. Why?
-    1. How?
-  1. Default
-    1. Requires
-    1. Setup
-  1. Valbergs setup
-    1. Requires
-    1. Setup
-    1. About
+    1. Settings explained
+        1. What?
+        1. Why?
+        1. How?
+    1. Default
+        1. Requires
+        1. Setup
+    1. Valbergs setup
+        1. Requires
+        1. Setup
+        1. About
 
 ## Setup
 
@@ -39,16 +39,16 @@ Not every developer is alike ;)
 #### How?
 So how does one use these settings? Simple, run them like this:
 
-        python manage.py runserver --settings settings.<settings name>
+    python manage.py runserver --settings settings.<settings name>
 
 For instance, to run valbergs settings run the development server using
 django-extensions' runserver_plus like this:
 
-        python manage.py runserver_plus --settings settings.valberg
+    python manage.py runserver_plus --settings settings.valberg
 
 Collecting static files on production server:
 
-        python manage.py collectstatic --settings settings.production
+    python manage.py collectstatic --settings settings.production
 
 and so on.
 
@@ -58,7 +58,8 @@ and so on.
 * South==0.7.3
 
 #### Setup
-        pip install -r requirements/default.txt
+
+    pip install -r requirements/default.txt
 
 ### Valbergs setup
 #### Requires
@@ -69,5 +70,6 @@ Same as base, and:
 * Werkzeug==0.8.1
 
 #### Setup
-        pip install -r requirements/valberg.txt
+
+    pip install -r requirements/valberg.txt
 
