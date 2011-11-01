@@ -7,7 +7,7 @@
   <div class="error">{% trans "Username and/or password are wrong." %}</div>
   {% endif %}
 
-  <form method="POST" action="{% url login_and_redirect %}?next={{ next }}">
+  <form method="POST" action="{% url evenio_site:login_and_redirect %}?next={{ next }}">
     {% csrf_token %}
     {{ form.as_p }}
     <button>{% trans "Log in" %}</button>

@@ -2,22 +2,22 @@
 <html>
 <head>
   <title>{% block title %}{{ title }}{% endblock %}</title>
-  <link rel="stylesheet" type="text/css" media="all" href="/media/css/reset.css" />
-  <link rel="stylesheet" type="text/css" media="all" href="/media/css/all.css" />
-  <link type="text/css" href="/media/css/custom-theme/jquery-ui-1.8.14.custom.css" rel="Stylesheet" />
-  <script type="text/javascript" src="/media/js/jquery-1.6.2.min.js"></script>
-  <script type="text/javascript" src="/media/js/jquery-ui-1.8.14.custom.min.js"></script>
-  <script type="text/javascript" src="/media/js/jquery-ui-timepicker-addon.js"></script>
-  <script type="text/javascript" src="/media/js/evenio_site.js"></script>
+  <link rel="stylesheet" type="text/css" media="all" href="{{STATIC_URL}}css/reset.css" />
+  <link rel="stylesheet" type="text/css" media="all" href="{{STATIC_URL}}css/all.css" />
+  <link type="text/css" href="{{STATIC_URL}}css/custom-theme/jquery-ui-1.8.14.custom.css" rel="Stylesheet" />
+  <script type="text/javascript" src="{{STATIC_URL}}js/jquery-1.6.2.min.js"></script>
+  <script type="text/javascript" src="{{STATIC_URL}}js/jquery-ui-1.8.14.custom.min.js"></script>
+  <script type="text/javascript" src="{{STATIC_URL}}js/jquery-ui-timepicker-addon.js"></script>
+  <script type="text/javascript" src="{{STATIC_URL}}js/evenio_site.js"></script>
 </head>
 
 <body>
 
 <div id="header">
   <div id="header_container" class="horizontal_container">
-    <a href="{% url frontpage %}"><div id="logo"></div></a>
+    <a href="{% url evenio_site:frontpage %}"><div id="logo"></div></a>
     <ul id="menu">
-      <li class="selected"><a href="{% url frontpage %}">{% trans "Calendar" %}</a></li>
+      <li class="selected"><a href="{% url evenio_site:frontpage %}">{% trans "Calendar" %}</a></li>
       <li><a href="{% url evenio:create %}">{% trans "Create event" %}</a></li>
       <li><a href="">{% trans "Profiles" %}</a></li>
       <li><a href="">{% trans "Who are we" %}</a></li>
@@ -30,7 +30,7 @@
       <ul>
         <li><a href="">{% trans "Print" %}</a></li>
         {% if request.user.is_authenticated %}
-        <li><a href="{% url logout %}">{% trans "Log out" %}</a></li>
+        <li><a href="{% url evenio_site:logout %}">{% trans "Log out" %}</a></li>
         {% else %}
         <li class="has_arrow"><a href="#" onclick="toggle_login_form(this);">{% trans "Log in" %}</a></li>
         {% endif %}
@@ -47,7 +47,7 @@
     <div class="clearfix"></div>
     
     <div id="login_form">
-      <form method="POST" action="{% url login_and_redirect %}?next={{ request.path }}">
+      <form method="POST" action="{% url evenio_site:login_and_redirect %}?next={{ request.path }}">
         {% login_form %}
         <button>{% trans "Log in" %}</button>
       </form>
