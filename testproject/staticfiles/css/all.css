@@ -374,6 +374,14 @@ div.content
   margin: -30px -20px -20px 20px;
 }
 
+.event_meta a {
+  background: #E5E01A;
+  color: #000;
+  text-decoration: none;
+  padding: 3px 6px;
+  font-weight: bold;
+}
+
 .event_property
 {
   font-size: 9pt;
