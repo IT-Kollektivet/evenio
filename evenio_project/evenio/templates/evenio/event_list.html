@@ -1,0 +1,18 @@
+{% extends "evenio/base.html" %}
+{% load i18n %}
+{% block evenio_all %}
+<ul class="unstyled span9">
+  {% for object in object_list reversed %}
+  <li class="row">
+    <span class="span4">
+      <h2>{{ object.starts|date:"D \d. d-m-y H:i"}}</h2>
+      <a href="{% url evenio:show object.slug %}">
+        {{ object.title }}
+      </a>
+    </span>
+  </li>
+  {% empty %}
+    <li>{% trans "Nothing happening." %}</li>
+  {% endfor %}
+</ul>
+{% endblock %}
