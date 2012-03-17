@@ -1,8 +1,1 @@
 *.pyc
-*.sw*
-*~
-dbevenio
-/.project
-/.pydevproject
-/.settings
-nbproject
