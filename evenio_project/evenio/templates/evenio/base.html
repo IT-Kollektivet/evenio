@@ -1,3 +1,12 @@
 {% block evenio_all %}
-
+<script>
+jQuery(function($){
+    $('h2~p').hide();
+    $('h2').toggle(function(e){
+        $(this).siblings('p').show(250);
+    }, function(e){
+        $(this).siblings('p').hide(250);
+    });
+});
+</script>
 {% endblock %}
