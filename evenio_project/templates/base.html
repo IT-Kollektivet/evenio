@@ -40,10 +40,14 @@
                 $(this).siblings('p').hide(250);
             });
             
-            $('h2').hover(function(e) {
+            $('h1').hover(function(e) {
                 $(this)
-                    .parent('span[class="span4"]')
+                    .siblings('span[class="span4"]')
                     .addClass('highlight')
+            }, function(e) {
+                $(this)
+                    .siblings('span[class="span4"]')
+                    .removeClass('highlight')
             });
         });
     }
