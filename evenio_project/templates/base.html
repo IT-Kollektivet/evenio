@@ -39,15 +39,14 @@
             }, function(e){
                 $(this).siblings('p').hide(250);
             });
-            
+            var evenio = {};
+            evenio.siblings = null;
             $('h1').hover(function(e) {
-                $(this)
-                    .siblings('span[class="span4"]')
-                    .addClass('highlight')
+                evenio.siblings = $(this)
+                    .siblings('span[class="span4"]');
+                evenio.siblings.addClass('highlight');
             }, function(e) {
-                $(this)
-                    .siblings('span[class="span4"]')
-                    .removeClass('highlight')
+                evenio.siblings.removeClass('highlight');
             });
         });
     }
