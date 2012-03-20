@@ -177,7 +177,7 @@ comment_was_flagged.connect(on_comment_was_flagged)
 def generate_test_data():
     from datetime import datetime, timedelta
     from random import choice, randint
-    dates = 300
+    dates = 50
     now = datetime.now()
 
     categories = ["Food", "Concert", "Party", "Talk", "Poetry"]
@@ -191,7 +191,7 @@ def generate_test_data():
 
     categories = Category.objects.all()
 
-    for _ in range(1000):
+    for _ in range(100):
 
         e = Event()
         e.title = "%s %s" % (choice(names), choice(names))

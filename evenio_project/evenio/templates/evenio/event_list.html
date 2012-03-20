@@ -1,18 +1,27 @@
 {% extends "evenio/base.html" %}
 {% load i18n %}
 {% block evenio_all %}
-<ul class="unstyled span9">
+
   {% for object in object_list reversed %}
-  <li class="row">
-    <span class="span4">
-      <h2>{{ object.starts|date:"D \d. d-m-y H:i"}}</h2>
-      <a href="{% url evenio:show object.slug %}">
-        {{ object.title }}
-      </a>
-    </span>
-  </li>
-  {% empty %}
-    <li>{% trans "Nothing happening." %}</li>
+    {% with object.starts as event_start %}
+    {% ifchanged event_start %}
+      {% if not forloop.first %}</div>{% endif %}
+      <div class="row-fluid">
+      <h1 class="span16">{{ object.starts|date:"l" }} {% trans "d." %} {{ event_start|date:_("d F") }}</h1>
+    {% endifchanged %}
+      <div class="span3">
+        <h2>{{ object.title }}</h2>
+        <p><i>{% if object.venue %}{{ object.venue_name }}{% else %}{% trans "TBA" %}{% endif %} - {% trans "starts at" %} {{ object.starts|date:"TIME_FORMAT" }}</i></p>
+        <a href="{% url evenio:show object.slug %}">
+          
+        </a>
+        {{ object.description|linebreaks }}
+      </div>
+      {% if forloop.last %}</div>{% endif %}
+    {% endwith %}
+    {% empty %}
+      <span class="span2">{% trans "Nothing happening." %}</span>
   {% endfor %}
-</ul>
+  </div>
+
 {% endblock %}

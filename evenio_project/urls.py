@@ -4,10 +4,19 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 admin.autodiscover()
 
+from tastypie.api import Api
+from evenio.api import CategoryResource, EventResource
+
+v1_api = Api(api_name="v1")
+v1_api.register(CategoryResource())
+v1_api.register(EventResource())
+
 urlpatterns = patterns('',
+    url(r'^api/', include(v1_api.urls)),
     url(r'^admin/', include(admin.site.urls)),
     (r'^accounts/', include('userena.urls')),
     url(r'', include('evenio.urls', namespace='evenio')),
+
 )
 
 if settings.DEBUG:
