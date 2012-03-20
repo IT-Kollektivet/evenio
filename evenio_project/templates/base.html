@@ -13,15 +13,22 @@
     <script src="{{ STATIC_URL }}js/jquery-1.7.1.min.js"></script>
     <!--<link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet">-->
     <style type="text/css">
-      body {
+      body { /* NOT fluid -- need change */
         padding-top: 60px;
         padding-bottom: 40px;
       }
       .sidebar-nav {
         padding: 9px 0;
       }
-      
+      .row-fluid:after {
+        clear: none; /* KLUDGE: overwrite */
+      }
+      h1 { cursor: default; }
       h2 { cursor: pointer; }
+      .highlight {
+          box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(82, 168, 236, 0.6);
+          border-radius: 0.307692308em; /* 13px/4px */
+      }
     </style>
     <script>
     if (!/accounts/.test(location.href)) { // don't run this code on account pages
@@ -31,6 +38,12 @@
                 $(this).siblings('p').show(250);
             }, function(e){
                 $(this).siblings('p').hide(250);
+            });
+            
+            $('h2').hover(function(e) {
+                $(this)
+                    .parent('span[class="span4"]')
+                    .addClass('highlight')
             });
         });
     }
