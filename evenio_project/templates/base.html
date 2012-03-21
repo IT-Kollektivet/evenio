@@ -13,55 +13,77 @@
     <script src="{{ STATIC_URL }}js/jquery-1.7.1.min.js"></script>
     <!--<link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet">-->
     <style type="text/css">
-      body { /* NOT fluid -- need change */
+      body { /* NOT fluid -- need change! */
         padding-top: 60px;
         padding-bottom: 40px;
       }
       .sidebar-nav {
         padding: 9px 0;
       }
-      .row-fluid:after {
-        clear: none; /* KLUDGE: overwrite */
-      }
-      h1:hover {
-          color: #005580;
-          cursor: pointer;
-      }
-      h2 { cursor: pointer; }
-      .highlight {
-          box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(82, 168, 236, 0.6);
-          border-radius: 0.307692308%; /* 13px/4px */
-  -webkit-transition: box-shadow 0.2s linear; 
-     -moz-transition: box-shadow 0.2s linear; 
-      -ms-transition: box-shadow 0.2s linear; 
-       -o-transition: box-shadow 0.2s linear; 
-          transition: box-shadow 0.2s linear;
-      }
     </style>
     <script>
-    if (!/accounts/.test(location.href)) { // don't run this code on account pages
         jQuery(function($){
-            $('h2~p').hide();
-            $('h2').toggle(function(e){
-                $(this).siblings('p').show(250);
-            }, function(e){
-                $(this).siblings('p').hide(250);
+            if (!/accounts/.test(location.href)) { // prevent running this code on account pages
+                layoutLinks = '<li><a href="#l1">Layout 1</a></li>' +
+                              '<li><a href="#l2">Layout 2</a></li>' +
+                              '<li><a href="#l3">Layout 3</a></li>' +
+                              '<li><a href="#orig">Original</a></li>';
+                $('ul.nav').append(layoutLinks);
+            }
+        
+            var b = document.body;
+            function removeClasses(not) {
+                $(b).removeClass(['l1', 'l2', 'l3'].filter(function(l) {
+                    return l != not;
+                }).join(' '));
+            }
+            function removeBehavoir() {
+                if(isl3()) {
+                    $('.content *').unbind().show();
+                }
+            }
+            function isl3() { return $(b).hasClass('l3'); }
+            $('a[href="#l1"]').click(function(){
+                removeBehavoir();
+                removeClasses('l1');
+                $(b).addClass('l1');
             });
-            var evenio = {};
-            evenio.events;
-            $('h1').hover(function(e) {
-                evenio.events = $(this)
-                    .siblings('span.span4');
-                evenio.events.addClass('highlight');
-            }, function(e) {
-                evenio.events.removeClass('highlight');
+            $('a[href="#l2"]').click(function(){
+                removeBehavoir();
+                removeClasses('l2');
+                $(b).addClass('l2');
             });
-            $('h1').click(function(e) {
-                evenio.events.toggle();
+            $('a[href="#l3"]').click(function(){
+                removeClasses('l3');
+                if(isl3()) return;
+                
+                $(b).addClass('l3');
+                // behavoir
+                $('h2~p').hide();
+                $('h2').toggle(function(e){
+                    $(this).siblings('p').show(250);
+                }, function(e){
+                    $(this).siblings('p').hide(250);
+                });
+                var evenio = {};
+                evenio.events;
+                $('h1').hover(function(e) {
+                    evenio.events = $(this)
+                        .siblings('span.span4');
+                    evenio.events.addClass('highlight');
+                }, function(e) {
+                    evenio.events.removeClass('highlight');
+                });
+                $('h1').click(function(e) {
+                    evenio.events.children('p').toggle();
+                });
             });
+            $('a[href="#orig"]').click(function(){
+                removeBehavoir();
+                removeClasses();
+            });            
         });
-    }
-</script>	        
+    </script>
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -87,7 +109,6 @@
           <a class="brand" href="#">{% block sitetitle %}Evenio{% endblock %}</a>
           <div class="nav-collapse">
             <ul class="nav">
-
               <li class="active"><a href="#">{% trans "Start" %}</a></li>
               <li><a href="#about">{% trans "About" %}</a></li>
               <li><a href="{% url evenio:create %}">{% trans "Create event" %}</a></li>
@@ -106,7 +127,7 @@
     </div>
     {% endblock %}    
     
-    <div class="container-fluid">
+    <div class="container-fluid content">
   
       {% block body %}
 

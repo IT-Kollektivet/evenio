@@ -1,0 +1,24 @@
+/* Layout 1 */
+body.l1 .row-fluid > .span4 { width: 90%; }
+
+/* Layout 2 */
+body.l2 .row-fluid > .span4 { width: 30%; }
+
+/* Layout 3 */
+body.l3 .row-fluid:after {
+    clear: none; /* KLUDGE: overwrite */
+}
+body.l3 h1:hover {
+    color: #005580;
+    cursor: pointer;
+}
+body.l3 h2 { cursor: pointer; }
+body.l3 .highlight {
+          box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(82, 168, 236, 0.6);
+          border-radius: 0.307692308%; /* 13px/4px */
+  -webkit-transition: box-shadow 0.2s linear; 
+     -moz-transition: box-shadow 0.2s linear; 
+      -ms-transition: box-shadow 0.2s linear; 
+       -o-transition: box-shadow 0.2s linear; 
+          transition: box-shadow 0.2s linear;
+}
