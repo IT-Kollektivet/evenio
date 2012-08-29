@@ -1,8 +1,5 @@
 *.pyc
-*.sw*
-*~
-dbevenio
-/.project
-/.pydevproject
-/.settings
-nbproject
+settings.py
+.project
+.pydevproject
+test.db
