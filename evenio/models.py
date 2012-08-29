@@ -8,8 +8,6 @@ from django.core.urlresolvers import reverse
 
 from django.template.defaultfilters import slugify
 from misc import slugify_uniquely
-from misc import AutoSlugField
-
 
 class Category(models.Model):
     """ A category """
@@ -149,26 +147,6 @@ class Event(models.Model):
             self.slug = slugify_uniquely(self.title, Event)
 
         super(Event, self).save(*args, **kwargs)
-
-
-class FlaggedComment(models.Model):
-    """
-    A (dirty hack?) way to register flagged comments
-    """
-    comment = models.ForeignKey(Comment)
-
-    def __unicode__(self):
-        return self.comment.user_name + ': ' + self.comment.comment
-
-
-def on_comment_was_flagged(sender, comment, request, flag, *args, **kwargs):
-    flagged = FlaggedComment(comment=comment)
-    flagged.save()
-
-    print comment.id
-
-comment_was_flagged.connect(on_comment_was_flagged)
-
 
 
 
