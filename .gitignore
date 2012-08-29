@@ -3,3 +3,5 @@ settings.py
 .project
 .pydevproject
 test.db
+.settings
+
