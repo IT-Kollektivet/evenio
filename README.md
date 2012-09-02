@@ -2,10 +2,15 @@ evenio
 ======
 
 web site for evenio.dk
+
+Django-guide: https://docs.djangoproject.com/en/dev/topics/install/
+
 Start web server:
-./manage.py runserver
+```shell
+```./manage.py runserver
 
 Populate db:
-./manage.py shell
->>> from evenio import models
->>> models.generate_test_data()
+```shell
+```./manage.py shell
+```>>> from evenio import models
+```>>> models.generate_test_data()
