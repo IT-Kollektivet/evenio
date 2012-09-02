@@ -1,0 +1,15 @@
+{% extends "evenio/base.html" %}
+{% load i18n %}
+{% load bootstrap_toolkit %}
+
+{% block evenio_all %}
+<link rel="stylesheet" href="{{ STATIC_URL }}jqueryui/jquery-ui-1.8.16.custom.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}jqueryui/jquery-ui-1.8.16.ie.css" />
+<script src="{{ STATIC_URL }}jqueryui/jquery-ui-1.8.16.custom.min.js"></script>
+
+<form method="POST">{% csrf_token %}
+  {{ form|as_bootstrap }}
+  <button type="submit" class="btn primary">{% trans "Submit" %}</button>
+</form>
+{% endblock %}
+
