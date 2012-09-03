@@ -179,7 +179,7 @@ def generate_test_data():
         e.slug = slugify(e.title)
         e.starts = now + timedelta(days=randint(0, dates))
         e.price = choice([0,100,200,20,30,50])
-        e.venue_name = choice(["Vores sted", "Dit sted", "En ny super venue!", "Hjemme hos Peer", "Mortens hybel"])
+        e.venue_name = choice(("Vores sted", "Dit sted", "En ny super venue!", "Hjemme hos Peer", "Mortens hybel"))
         e.description = loremipsum[:randint(40, len(loremipsum))]
         e.save()
         for c in categories.order_by('?')[:randint(1,3)]:
