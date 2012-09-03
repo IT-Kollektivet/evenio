@@ -7,7 +7,7 @@ Django-guide: https://docs.djangoproject.com/en/dev/topics/install/
 
 Start web server:
 ```shell
-```./manage.py runserver
+./manage.py runserver
 ```
 
 Populate db:
