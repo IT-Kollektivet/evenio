@@ -159,15 +159,17 @@ def generate_test_data():
     now = datetime.now()
 
     categories = ["Food", "Concert", "Party", "Talk", "Poetry"]
+    
+    loremipsum = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
 
-    names = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
-    names = slugify(names).split("-")
-
+    names = slugify(loremipsum).split("-")
+    # empty evenio_category before populating it - prevent duplicates
+    Category.objects.all().delete()
     for c in categories:
         cat = Category(title=c, slug=slugify(c))
         cat.save()
 
-    categories = Category.objects.all()
+    categories = Category.objects.all().distinct()  # be double sure and only select distinct
 
     for _ in range(100):
 
@@ -177,7 +179,8 @@ def generate_test_data():
         e.slug = slugify(e.title)
         e.starts = now + timedelta(days=randint(0, dates))
         e.price = choice([0,100,200,20,30,50])
-        e.description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
+        e.venue_name = choice(["Vores sted", "Dit sted", "En ny super venue!", "Hjemme hos Peer", "Mortens hybel"])
+        e.description = loremipsum[:randint(40, len(loremipsum))]
         e.save()
         for c in categories.order_by('?')[:randint(1,3)]:
             e.categories.add(c)
