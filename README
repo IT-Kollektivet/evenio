@@ -1,3 +1,6 @@
+Install PIL (Python Image Library)
+https://developers.google.com/appengine/docs/python/images/installingPIL
+
 Start web server:
 ./manage.py runserver
 
