@@ -90,7 +90,7 @@ INSTALLED_APPS = (
  #   'userena',
     'easy_thumbnails',
  #   'evenioprofiles',
-    'bootstrap_toolkit',
+ #   'bootstrap_toolkit',
     'south',
     'tastypie',
 )
