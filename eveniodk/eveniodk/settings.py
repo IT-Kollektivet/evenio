@@ -93,6 +93,7 @@ INSTALLED_APPS = (
  #   'bootstrap_toolkit',
     'south',
     'tastypie',
+    'eveniodk'
 )
 
 # A sample logging configuration. The only tangible logging
