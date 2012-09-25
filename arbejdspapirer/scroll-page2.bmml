@@ -1,0 +1,23 @@
+<mockup version="1.0" skin="wireframe" fontFace="Balsamiq Sans" measuredW="596" measuredH="582" mockupW="592" mockupH="577">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="4" y="5" w="592" h="577" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>EVENIO%0Ahttp%3A//www.evenio.dk</text>
+        <value>51</value>
+        <verticalScrollbar>true</verticalScrollbar>
+      </controlProperties>
+    </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::Image" x="6" y="78" w="559" h="504" measuredW="559" measuredH="504" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <crop>166%2C0%2C699%2C840</crop>
+        <src>./kalender-layers-til-mockup_0001_scrolling2.png</src>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::Arrow" x="120" y="133" w="42" h="443" measuredW="150" measuredH="100" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Forts%E6tter%20m%E5ned%20efter%20m%E5ned...</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

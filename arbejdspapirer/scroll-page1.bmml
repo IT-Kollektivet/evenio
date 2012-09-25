@@ -1,0 +1,23 @@
+<mockup version="1.0" skin="wireframe" fontFace="Balsamiq Sans" measuredW="612" measuredH="678" mockupW="608" mockupH="673">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="4" y="5" w="592" h="635" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>EVENIO%0Ahttp%3A//www.evenio.dk</text>
+        <value>23</value>
+        <verticalScrollbar>true</verticalScrollbar>
+      </controlProperties>
+    </control>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::Image" x="4" y="78" w="573" h="600" measuredW="572" measuredH="600" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <crop>153%2C0%2C716%2C1000</crop>
+        <src>./assets/kalender-layers-til-mockup_0000_scrolling1.png</src>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::StickyNote" x="503" y="113" w="109" h="80" measuredW="109" measuredH="123" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Accordian%20f%F8lger%20med%20siden%20ned.</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
