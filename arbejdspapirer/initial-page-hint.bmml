@@ -35,9 +35,9 @@
         <text/>
       </controlProperties>
     </control>
-    <control controlID="6" controlTypeID="com.balsamiq.mockups::StickyNote" x="248" y="174" w="-1" h="-1" measuredW="109" measuredH="123" zOrder="6" locked="false" isInGroup="-1">
+    <control controlID="6" controlTypeID="com.balsamiq.mockups::StickyNote" x="248" y="174" w="109" h="103" measuredW="109" measuredH="123" zOrder="6" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Hint%20-%20vipper%20lidt%20%E5bent%20p%E5%20random%20dage%2C%20s%E5%20man%20kan%20se%20at%20der%20er%20mere.</text>
+        <text>Hint%20-%20vipper%20lidt%20%E5bent%20p%E5%20dags%20dato%2C%20s%E5%20man%20kan%20se%20at%20der%20er%20mere.</text>
       </controlProperties>
     </control>
     <control controlID="7" controlTypeID="com.balsamiq.mockups::CallOut" x="488" y="101" w="-1" h="-1" measuredW="84" measuredH="39" zOrder="7" locked="false" isInGroup="-1">
