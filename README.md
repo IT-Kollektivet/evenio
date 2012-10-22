@@ -22,3 +22,10 @@ Populate db:
 >>> from evenio import models
 >>> models.generate_test_data()
 ```
+
+If this is the first time you are generating a database then you need to sync and migrate data schemes from the evenio app to your site (eveniodk/)
+```shell
+./manage.py syncdb
+/.manage.py migrate
+```
+Now you can populate the db as described above.
