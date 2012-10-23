@@ -5,7 +5,7 @@ web site for evenio.dk
 
 **Folder structure**:
 ```
-evenio/ <- Django app for creating and managing events
+evenio/ <- Django app for creating and managing events (moved inside the eveniodk directory)
 testproject/ <- A test project with code examples on how to set up a proper project by benjaoming
 eveniodk/ <- What is to become evenio.dk website (using the Django evenio app)
 ```
