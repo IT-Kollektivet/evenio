@@ -1,3 +1,79 @@
 {% block evenio_all %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		{% block mobile_meta %}
+		<!-- viewport meta to reset iPhone inital scale -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		{% endblock %}
+		<title>{% block title %}[DESIGN2] EVENIO - Non-commercial events in Copenhagen{% endblock %}</title>
 
+		{% block head %}
+		<link href="style2.css" rel="stylesheet" charset="UTF-8" type="text/css" />
+		{% endblock %}
+		<!-- css3-mediaqueries.js for IE8 or older -->
+		<!--[if lt IE 9]>
+		<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+		<![endif]-->
+
+	</head>
+
+	<body>
+		
+		<section id="content">
+			
+			<header>
+				{% block header %}
+                <img class="logo" src="img/evenio.png" alt="EVENIO" />
+				<div class="logo-slogan">
+					Your calendar for the month of <strong>october</strong>
+				</div>
+				{% endblock %}
+			</header>
+			
+			{% block intro %}
+			<article id="intro">
+				<h1>Non-commercial events in Copenhagen</h1>	
+				<p>
+					<strong>Evenio is a political project.</strong>
+					<br/>
+					This calendar aims at making it easier to involve others and to get involved in the antiauthoritarian and extraparlamentarian left wing in Copenhagen!
+				</p>
+				<p>
+					Use it to advertise your events and mobilize people for your initiatives.
+				</p>
+
+				<a class="button" href="#">&gt;&gt; Post your events here &lt;&lt;</a>
+	
+				<p>
+					You can also download the printable calendar as a PDF file
+				</p>
+	
+				<a class="button" href="#">&gt;&gt; Download PDF calendar &lt;&lt;</a>
+			</article>
+			{% endblock %}
+			
+			{% block content %}{% endblock %}
+			
+		</section>
+		
+		<aside>
+			{% block aside %}{% endblock %}
+		</aside>
+		
+		<footer>
+			<p>
+				<a href="#">Download printable PDF calendar</a>
+			</p>
+			<p>
+				<a href="#">Post your events her</a>
+			</p>
+			<p>
+				<a href="#">Powered by Maitri.dk</a>
+			</p>
+		</footer>
+
+	</body>
+</html>
 {% endblock %}

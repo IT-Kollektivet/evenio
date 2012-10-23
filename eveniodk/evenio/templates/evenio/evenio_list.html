@@ -1,0 +1,11 @@
+{% extends "evenio/base.html" %}
+{% load i18n %}
+
+{% block content %}
+	{% for object in object_list reversed %}
+		{% ifchanged object.date %}
+		<time datetime="{{ object.starts }}">{{ object.starts }}</time>{% endifchanged %}
+		<time datetime="{{ object.starts }}" class="event-time">{{ object.starts }}</time>
+	    {{ object.description|linebreaks }}
+	{% endfor %}
+{% endblock %}
