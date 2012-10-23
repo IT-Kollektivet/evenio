@@ -9,3 +9,5 @@ local_settings.py
 .pydevproject
 # System file on Mac
 .DS_Store
+# Django file that shouln't be shared
+test.db
