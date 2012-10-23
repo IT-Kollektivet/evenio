@@ -30,7 +30,7 @@ If this is the first time you are generating a database then you need to sync an
 ```
 Now you can populate the db as described above.
 
-Upgrade your Django installation (using (pip)[http://pypi.python.org/pypi/pip]):
+Upgrade your Django installation (using [pip](http://pypi.python.org/pypi/pip)):
 ```shell
 pip install django django-guardian easy_thumbnails south django-tastypie --upgrade
 ```
