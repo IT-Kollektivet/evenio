@@ -13,6 +13,7 @@ v1_api.register(EventResource())
 
 urlpatterns = patterns('',
     url(r'^api/', include(v1_api.urls)),
+    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'', include('evenio.urls', namespace='evenio')),
 

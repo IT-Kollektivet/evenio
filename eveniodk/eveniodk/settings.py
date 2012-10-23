@@ -93,6 +93,7 @@ INSTALLED_APPS = (
  #   'bootstrap_toolkit',
     'south',
     'tastypie',
+    'django.contrib.admindocs',
     'eveniodk'
 )
 
